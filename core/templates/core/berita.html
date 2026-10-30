@@ -1,0 +1,109 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+Berita - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section light">
+
+    <div class="container">
+
+        <span class="section-label">
+            INFORMASI TERBARU
+        </span>
+
+        <h1>Berita Muhammadiyah</h1>
+
+        <p class="description">
+            Informasi dan perkembangan kegiatan organisasi.
+        </p>
+
+
+        <div class="news-grid">
+
+            {% for news in page_obj %}
+
+                <article class="news-card">
+
+                    {% if news.image %}
+
+                        <img src="{{ news.image.url }}"
+                             alt="{{ news.title }}">
+
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h2>{{ news.title }}</h2>
+
+                        <p>
+                            {{ news.content|truncatewords:30 }}
+                        </p>
+
+                        <small>
+                            {{ news.published_at|date:"d M Y" }}
+                        </small>
+
+                        <p>
+                            <a href="{% url 'core:detail_berita' news.slug %}">
+                                Baca Selengkapnya
+                            </a>
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+
+                    <h3>Belum Ada Berita</h3>
+
+                    <p>
+                        Belum ada berita yang dipublikasikan.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% if page_obj.paginator.num_pages > 1 %}
+
+            <div class="pagination">
+
+                {% if page_obj.has_previous %}
+
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        Sebelumnya
+                    </a>
+
+                {% endif %}
+
+                <span>
+                    Halaman {{ page_obj.number }}
+                    dari {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+
+                    <a href="?page={{ page_obj.next_page_number }}">
+                        Selanjutnya
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

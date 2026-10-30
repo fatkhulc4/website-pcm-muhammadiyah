@@ -1,0 +1,62 @@
+
+{% extends "core/base.html" %}
+
+{% block title %}
+Ranting - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <span class="section-label">
+            JARINGAN ORGANISASI
+        </span>
+
+        <h1>Ranting Muhammadiyah</h1>
+
+        <div class="news-grid">
+
+            {% for item in ranting_list %}
+
+                <article class="news-card">
+
+                    <div class="news-content">
+
+                        <h3>{{ item.name }}</h3>
+
+                        {% if item.address %}
+                            <p>
+                                Alamat: {{ item.address }}
+                            </p>
+                        {% endif %}
+
+                        {% if item.description %}
+                            <p>{{ item.description }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+                    <h3>Data Ranting Belum Tersedia</h3>
+                    <p>
+                        Informasi ranting akan ditampilkan
+                        setelah data resmi tersedia.
+                    </p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

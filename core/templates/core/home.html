@@ -1,0 +1,205 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+Beranda - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container hero-content">
+
+        <span class="label">
+            WEBSITE INFORMASI ORGANISASI
+        </span>
+
+        <h1>
+            Membangun Umat,<br>
+            Memajukan Peradaban.
+        </h1>
+
+        <p>
+            Media informasi profil, berita, kegiatan,
+            dan Amal Usaha Muhammadiyah.
+        </p>
+
+        <a href="#profil" class="button">
+            Jelajahi Website
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="profil">
+
+    <div class="container">
+
+        <span class="section-label">
+            TENTANG ORGANISASI
+        </span>
+
+        <h2>Profil PCM Muhammadiyah</h2>
+
+        {% if profile %}
+
+            <h3>{{ profile.name }}</h3>
+
+            <p class="description">
+                {{ profile.description|default:"Deskripsi organisasi belum tersedia." }}
+            </p>
+
+            {% if profile.address %}
+                <p>Alamat: {{ profile.address }}</p>
+            {% endif %}
+
+            {% if profile.logo %}
+                <img src="{{ profile.logo.url }}"
+                     alt="Logo organisasi"
+                     width="150">
+            {% endif %}
+
+        {% else %}
+
+            <p class="description">
+                Informasi profil organisasi akan ditampilkan
+                setelah data resmi tersedia dan diverifikasi.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<section class="section light" id="berita">
+
+    <div class="container">
+
+        <span class="section-label">
+            INFORMASI TERBARU
+        </span>
+
+        <h2>Berita Muhammadiyah</h2>
+
+        <div class="news-grid">
+
+            {% for news in news_list %}
+
+                <article class="news-card">
+
+                    {% if news.image %}
+                        <img src="{{ news.image.url }}"
+                             alt="{{ news.title }}">
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ news.title }}</h3>
+
+                        <p>
+                            {{ news.content|truncatewords:20 }}
+                        </p>
+
+                        <a href="{% url 'core:detail_berita' news.slug %}">
+                            Baca Selengkapnya
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+
+                    <h3>Belum Ada Berita</h3>
+
+                    <p>
+                        Berita organisasi akan ditampilkan
+                        setelah tersedia berita yang dipublikasikan.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <p>
+            <a href="{% url 'core:berita' %}" class="button">
+                Lihat Semua Berita
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="kegiatan">
+
+    <div class="container">
+
+        <span class="section-label">
+            AGENDA ORGANISASI
+        </span>
+
+        <h2>Kegiatan</h2>
+
+        <div class="news-grid">
+
+            {% for event in event_list %}
+
+                <article class="news-card">
+
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}"
+                             alt="{{ event.title }}">
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ event.title }}</h3>
+
+                        <p>
+                            {{ event.description|truncatewords:20 }}
+                        </p>
+
+                        <p>
+                            Waktu: {{ event.start_date|date:"d M Y H:i" }}
+                        </p>
+
+                        {% if event.location %}
+                            <p>Lokasi: {{ event.location }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+
+                    <h3>Belum Ada Kegiatan</h3>
+
+                    <p>
+                        Informasi kegiatan akan diperbarui
+                        setelah data tersedia.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

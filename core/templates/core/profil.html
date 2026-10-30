@@ -1,0 +1,71 @@
+
+{% extends "core/base.html" %}
+
+{% block title %}
+Profil Organisasi - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <span class="section-label">
+            TENTANG ORGANISASI
+        </span>
+
+        <h1>Profil PCM Muhammadiyah</h1>
+
+        {% if profile %}
+
+            <div class="profile-content">
+
+                {% if profile.logo %}
+                    <img
+                        src="{{ profile.logo.url }}"
+                        alt="Logo organisasi"
+                        class="profile-logo"
+                    >
+                {% endif %}
+
+                <h2>{{ profile.name }}</h2>
+
+                <p>
+                    {{ profile.description|default:"Deskripsi belum tersedia."|linebreaks }}
+                </p>
+
+                {% if profile.address %}
+                    <h3>Alamat</h3>
+                    <p>{{ profile.address }}</p>
+                {% endif %}
+
+                {% if profile.phone %}
+                    <h3>Nomor Telepon</h3>
+                    <p>{{ profile.phone }}</p>
+                {% endif %}
+
+                {% if profile.email %}
+                    <h3>Email</h3>
+                    <p>{{ profile.email }}</p>
+                {% endif %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-card">
+                <h3>Profil Belum Tersedia</h3>
+                <p>
+                    Informasi organisasi akan ditampilkan
+                    setelah data resmi diperoleh dan diverifikasi.
+                </p>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

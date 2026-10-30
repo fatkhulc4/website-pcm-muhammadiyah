@@ -1,0 +1,71 @@
+
+{% extends "core/base.html" %}
+
+{% block title %}
+Pimpinan - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section light">
+
+    <div class="container">
+
+        <span class="section-label">
+            STRUKTUR ORGANISASI
+        </span>
+
+        <h1>Pimpinan Muhammadiyah</h1>
+
+        <div class="news-grid">
+
+            {% for leader in leaders %}
+
+                <article class="news-card">
+
+                    {% if leader.photo %}
+                        <img
+                            src="{{ leader.photo.url }}"
+                            alt="{{ leader.name }}"
+                        >
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ leader.name }}</h3>
+
+                        <p>
+                            {{ leader.position }}
+                        </p>
+
+                        {% if leader.period %}
+                            <p>Periode: {{ leader.period }}</p>
+                        {% endif %}
+
+                        {% if leader.description %}
+                            <p>{{ leader.description }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+                    <h3>Data Pimpinan Belum Tersedia</h3>
+                    <p>
+                        Data pimpinan akan ditampilkan
+                        setelah diperoleh dari sumber yang terverifikasi.
+                    </p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

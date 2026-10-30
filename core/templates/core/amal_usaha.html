@@ -1,0 +1,75 @@
+
+{% extends "core/base.html" %}
+
+{% block title %}
+Amal Usaha - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section light">
+
+    <div class="container">
+
+        <span class="section-label">
+            KONTRIBUSI ORGANISASI
+        </span>
+
+        <h1>Amal Usaha Muhammadiyah</h1>
+
+        <div class="news-grid">
+
+            {% for item in amal_list %}
+
+                <article class="news-card">
+
+                    {% if item.photo %}
+                        <img
+                            src="{{ item.photo.url }}"
+                            alt="{{ item.name }}"
+                        >
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ item.name }}</h3>
+
+                        <p>
+                            Kategori: {{ item.get_category_display }}
+                        </p>
+
+                        {% if item.address %}
+                            <p>Alamat: {{ item.address }}</p>
+                        {% endif %}
+
+                        {% if item.phone %}
+                            <p>Telepon: {{ item.phone }}</p>
+                        {% endif %}
+
+                        {% if item.description %}
+                            <p>{{ item.description }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+                    <h3>Data Amal Usaha Belum Tersedia</h3>
+                    <p>
+                        Informasi Amal Usaha akan ditampilkan
+                        setelah data resmi tersedia.
+                    </p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+{{ news.title }} - PCM Muhammadiyah
+{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <article class="detail-article">
+
+            <a href="{% url 'core:berita' %}">
+                ← Kembali ke Berita
+            </a>
+
+            <h1>{{ news.title }}</h1>
+
+            <p class="article-date">
+                Dipublikasikan:
+                {{ news.published_at|date:"d F Y" }}
+            </p>
+
+            {% if news.image %}
+
+                <img src="{{ news.image.url }}"
+                     alt="{{ news.title }}"
+                     class="article-image">
+
+            {% endif %}
+
+            <div class="article-content">
+
+                {{ news.content|linebreaks }}
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+{% endblock %}
