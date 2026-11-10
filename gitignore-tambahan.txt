@@ -1,5 +1,0 @@
-# Tambahkan baris ini ke .gitignore
-.env
-db.sqlite3
-media/
-staticfiles/
