@@ -1,45 +1,40 @@
 
+{% load static %}
+
 <header class="navbar">
 
     <div class="container nav-content">
 
         <a href="{% url 'core:home' %}" class="brand">
-            PCM Muhammadiyah
+ <img
+    src="{% static 'core/img/logo-muhammadiyah3.png' %}"
+    alt="Logo Muhammadiyah"
+    class="brand-logo"
+    style="width: 90px; height: 90px; object-fit: contain;"
+>
+            <span style="margin-left: -5px; position: relative; top: -30px;">
+                    PCM Muhammadiyah
+</span>
+            
         </a>
 
         <nav>
 
-            <a href="{% url 'core:home' %}">
-                Beranda
-            </a>
+            <a href="{% url 'core:home' %}">Beranda</a>
 
-            <a href="{% url 'core:profil' %}">
-                Profil
-            </a>
+            <a href="{% url 'core:profil' %}">Profil</a>
 
-            <a href="{% url 'core:pimpinan' %}">
-                Pimpinan
-            </a>
+            <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
 
-            <a href="{% url 'core:ranting' %}">
-                Ranting
-            </a>
+            <a href="{% url 'core:ranting' %}">Ranting</a>
 
-            <a href="{% url 'core:amal_usaha' %}">
-                Amal Usaha
-            </a>
+            <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
 
-            <a href="{% url 'core:berita' %}">
-                Berita
-            </a>
+            <a href="{% url 'core:berita' %}">Berita</a>
 
-            <a href="{% url 'core:kegiatan' %}">
-                Kegiatan
-            </a>
+            <a href="{% url 'core:kegiatan' %}">Kegiatan</a>
 
-            <a href="{% url 'core:kontak' %}">
-                Kontak
-            </a>
+            <a href="{% url 'core:kontak' %}">Kontak</a>
 
         </nav>
 

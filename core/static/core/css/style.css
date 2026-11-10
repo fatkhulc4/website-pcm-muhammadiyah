@@ -295,7 +295,7 @@ footer h3 {
         flex-direction: column;
         gap: 15px;
     }
-    /* HALAMAN PROFIL */
+ /* HALAMAN PROFIL */
 
 .profile-content {
     max-width: 850px;
@@ -348,6 +348,21 @@ footer h3 {
 
 .nav-content nav a:hover {
     color: #16734b;
+}
+
+/* Logo pada navbar */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.brand-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 }

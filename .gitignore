@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+db.sqlite3
+
+.env
+db.sqlite3
+media/
+staticfiles/
