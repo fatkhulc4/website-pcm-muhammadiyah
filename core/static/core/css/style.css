@@ -365,5 +365,94 @@ footer h3 {
     object-fit: contain;
 }
 
+
 }
+
+/* FOOTER PCM MUHAMMADIYAH */
+
+.site-footer {
+    background: linear-gradient(
+        135deg,
+        #00652f,
+        #00451f
+    );
+    color: white;
+    width: 100%;
+    margin-top: 50px;
+    padding: 45px 34px 20px;
+}
+
+.footer-main {
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+    padding: 0 15px 35px;
+}
+
+.footer-logo {
+    width: 210px;
+    height: 210px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+
+.footer-main h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.footer-main h3 {
+    font-size: 25px;
+    color: #a8edc4;
+    margin-bottom: 8px;
+}
+
+.footer-address {
+    color: #c5dfce;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.6);
+    padding-top: 22px;
+    margin-top: 0;
+}
+
+.footer-bottom p {
+    color: #c5dfce;
+    font-size: 13px;
+}
+
+/* RESPONSIVE FOOTER */
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 35px 20px 18px;
+    }
+
+    .footer-logo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .footer-main h2 {
+        font-size: 21px;
+    }
+
+    .footer-main h3 {
+        font-size: 21px;
+    }
+
+    .footer-address {
+        font-size: 14px;
+    }
+
+    .footer-bottom p {
+        font-size: 11px;
+        text-align: center;
+    }
+}
+
 }
