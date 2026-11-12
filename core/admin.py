@@ -12,6 +12,11 @@ from .models import (
 )
 
 
+admin.site.site_header = "Admin Website PCM Masaran"
+admin.site.site_title = "Admin PCM Masaran"
+admin.site.index_title = "Kelola Konten Website PCM Masaran"
+
+
 @admin.register(OrganizationProfile)
 class OrganizationProfileAdmin(admin.ModelAdmin):
     list_display = ("name", "phone", "email")

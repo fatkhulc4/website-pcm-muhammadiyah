@@ -33,6 +33,10 @@ class Leader(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Pimpinan"
+        verbose_name_plural = "Pimpinan"
+
 
 class Ranting(models.Model):
     name = models.CharField(max_length=150)
@@ -41,6 +45,10 @@ class Ranting(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Ranting"
+        verbose_name_plural = "Ranting"
 
 
 class AmalUsaha(models.Model):
@@ -65,6 +73,10 @@ class AmalUsaha(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Amal Usaha"
+        verbose_name_plural = "Amal Usaha"
 
 
 class News(models.Model):
@@ -105,6 +117,8 @@ class News(models.Model):
         return self.title
 
     class Meta:
+        verbose_name = "Berita"
+        verbose_name_plural = "Berita"
         ordering = ["-created_at"]
 
 
@@ -130,6 +144,10 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Kegiatan"
+        verbose_name_plural = "Kegiatan"
+
 
 class Document(models.Model):
     title = models.CharField(max_length=200)
@@ -139,6 +157,10 @@ class Document(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "Dokumen"
+        verbose_name_plural = "Dokumen"
 
 
 class IncomingMessage(models.Model):
@@ -152,6 +174,10 @@ class IncomingMessage(models.Model):
     def __str__(self):
         return self.subject
 
+    class Meta:
+        verbose_name = "Pesan Masuk"
+        verbose_name_plural = "Pesan Masuk"
+
 
 class RelatedLink(models.Model):
     title = models.CharField(max_length=150)
@@ -161,3 +187,7 @@ class RelatedLink(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "Tautan Terkait"
+        verbose_name_plural = "Tautan Terkait"
