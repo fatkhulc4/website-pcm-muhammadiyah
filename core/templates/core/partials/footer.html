@@ -4,32 +4,42 @@
     <div class="footer-main">
 
         <span class="footer-logo-badge">
-            <img
-                src="{% static 'core/img/footer.jpg' %}"
-                alt="Logo Muhammadiyah"
-                class="footer-logo"
-            >
+            <img src="{% static 'core/img/footer.jpg' %}"
+                 alt="Logo Muhammadiyah" class="footer-logo">
         </span>
 
-        <h2>Pimpinan Cabang Muhammadiyah</h2>
-        <h3>Masaran </h3>
+        <h2>{{ site_profile.name|default:"Pimpinan Cabang Muhammadiyah Masaran" }}</h2>
 
         <p class="footer-address">
-            Jl. kelapa No. 10 RT.30 RW.10 Desa Masaran,
-            Kelurahan Masaran, Kecamatan Masaran,
-            Kabupaten Sragen Kode pos 57282
+            {{ site_profile.address|default:"belum tersedia" }}
         </p>
+        <p>
+            {% if site_profile.phone %}Telepon: {{ site_profile.phone }}{% endif %}
+            {% if site_profile.email %} · Email: {{ site_profile.email }}{% endif %}
+        </p>
+
+        {% if related_links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener" style="color:#ffffff">{{ link.title }}</a>
+        <ul class="footer-links">
+            {% for link in related_links %}
+            <li>
+                <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
     </div>
 
     <div class="footer-bottom">
         <p>
-            Website ini dibuat untuk tugas kuliah Pemrograman Web
-            berbasis Framework, bukan website resmi PCM Pekajangan.
+            Website ini dibuat untuk tugas kuliah Pemrograman Web berbasis
+            Framework, bukan website resmi
+            {{ site_profile.name|default:"PCM Masaran" }}.
         </p>
         <p class="footer-credit">
-            Logo Muhammadiyah: K. H. Siradj Dahlan, vektor oleh
-            Hibensis, via Wikimedia Commons, lisensi CC BY-SA 4.0
+            Logo Muhammadiyah: K. H. Siradj Dahlan, vektor oleh Hibensis,
+            via Wikimedia Commons, lisensi CC BY-SA 4.0
         </p>
     </div>
 </footer>

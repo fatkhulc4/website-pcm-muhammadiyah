@@ -1,0 +1,16 @@
+<article class="news-card">
+    {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+    {% endif %}
+    <div class="news-content">
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.description }}</p>
+        <p>Waktu: {{ event.start_date|date:"d F Y H:i" }}</p>
+        {% if event.end_date %}
+            <p>Selesai: {{ event.end_date|date:"d F Y H:i" }}</p>
+        {% endif %}
+        {% if event.location %}
+            <p>Tempat: {{ event.location }}</p>
+        {% endif %}
+    </div>
+</article>

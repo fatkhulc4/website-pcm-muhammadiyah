@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+
+{% block title %}Agenda - {{ site_profile.short_name|default:"PCM Masaran" }}{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+
+        <span class="section-label">AGENDA ORGANISASI</span>
+        <h1>Agenda Kegiatan</h1>
+
+        <h2>Agenda Akan Datang</h2>
+        <div class="news-grid">
+            {% for event in upcoming %}
+                {% include "core/partials/event_card.html" %}
+            {% empty %}
+                <div class="empty-card">
+                    <h3>Belum Ada Agenda</h3>
+                    <p>Agenda mendatang belum tersedia.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Agenda Sudah Terlaksana</h2>
+        <div class="news-grid">
+            {% for event in past %}
+                {% include "core/partials/event_card.html" %}
+            {% empty %}
+                <div class="empty-card">
+                    <h3>Belum Ada Riwayat</h3>
+                    <p>Belum ada agenda yang sudah terlaksana.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

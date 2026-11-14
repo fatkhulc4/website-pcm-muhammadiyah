@@ -10,8 +10,17 @@ from .models import (
     AmalUsaha,
     News,
     Event,
+    Document,
 )
 
+def unduhan(request):
+    documents = Document.objects.order_by("-uploaded_at")
+
+    return render(
+        request,
+        "core/unduhan.html",
+        {"documents": documents},
+    )
 
 def home(request):
     profile = OrganizationProfile.objects.first()
@@ -97,13 +106,16 @@ def amal_usaha(request):
     )
 
 
-def kegiatan(request):
-    event_list = Event.objects.order_by("start_date")
+def agenda(request):
+    now = timezone.now()
+
+    upcoming = Event.objects.filter(start_date__gte=now).order_by("start_date")
+    past = Event.objects.filter(start_date__lt=now).order_by("-start_date")
 
     return render(
         request,
-        "core/kegiatan.html",
-        {"event_list": event_list},
+        "core/agenda.html",
+        {"upcoming": upcoming, "past": past},
     )
 
 
