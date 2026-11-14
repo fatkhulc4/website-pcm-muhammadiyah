@@ -5,14 +5,26 @@ from django.utils.text import slugify
 
 class OrganizationProfile(models.Model):
     name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=50, blank=True)
+    tagline = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
+    history = models.TextField(blank=True)
+    vision = models.TextField(blank=True)
+    mission = models.TextField(blank=True, help_text="Satu misi per baris")
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
-    logo = models.ImageField(
-        upload_to="organization/",
-        blank=True
-    )
+    member_count = models.PositiveIntegerField(null=True, blank=True)
+    logo = models.ImageField(upload_to="organization/", blank=True)
+    hero_image = models.ImageField(upload_to="organization/", blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Profil Organisasi"
+        verbose_name_plural = "Profil Organisasi"
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
