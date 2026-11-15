@@ -1,62 +1,91 @@
-
 {% extends "core/base.html" %}
-
-{% block title %}
-Ranting - PCM Muhammadiyah
-{% endblock %}
+{% block title %}Ranting - PCM Muhammadiyah{% endblock %}
 
 {% block content %}
 
-<section class="section">
+<section class="rt-hero">
+  <div class="rt-hero-inner">
+    <p class="rt-label">JARINGAN DAKWAH AKAR RUMPUT</p>
+    <h1>Pimpinan Ranting Muhammadiyah</h1>
+    <p class="rt-sub">Di bawah naungan Pimpinan Cabang Muhammadiyah Masaran</p>
+  </div>
+</section>
 
-    <div class="container">
+<section class="rt-wrap">
 
-        <span class="section-label">
-            JARINGAN ORGANISASI
-        </span>
-
-        <h1>Ranting Muhammadiyah</h1>
-
-        <div class="news-grid">
-
-            {% for item in ranting_list %}
-
-                <article class="news-card">
-
-                    <div class="news-content">
-
-                        <h3>{{ item.name }}</h3>
-
-                        {% if item.address %}
-                            <p>
-                                Alamat: {{ item.address }}
-                            </p>
-                        {% endif %}
-
-                        {% if item.description %}
-                            <p>{{ item.description }}</p>
-                        {% endif %}
-
-                    </div>
-
-                </article>
-
-            {% empty %}
-
-                <div class="empty-card">
-                    <h3>Data Ranting Belum Tersedia</h3>
-                    <p>
-                        Informasi ranting akan ditampilkan
-                        setelah data resmi tersedia.
-                    </p>
-                </div>
-
-            {% endfor %}
-
-        </div>
-
+  <div class="rt-stats">
+    <div class="rt-stat">
+      <strong>{{ ranting_list|length }}</strong>
+      <span>Pimpinan Ranting</span>
     </div>
+    <div class="rt-stat">
+      <strong>1</strong>
+      <span>Cabang: PCM Masaran</span>
+    </div>
+    <div class="rt-stat">
+      <strong>Desa</strong>
+      <span>Tingkat desa / kelurahan</span>
+    </div>
+  </div>
+
+  <p class="rt-lead">
+    Pimpinan Ranting Muhammadiyah (PRM) merupakan struktur organisasi Muhammadiyah pada tingkat desa atau kelurahan yang memiliki peran strategis sebagai ujung tombak gerakan dakwah Persyarikatan. Keberadaan PRM menjadi garda terdepan dalam menyampaikan risalah Islam berkemajuan, membina jamaah, mengembangkan kegiatan keagamaan, serta memperkuat hubungan Muhammadiyah dengan masyarakat secara langsung.
+  </p>
+
+  <div class="rt-dua">
+    <article class="rt-info">
+      <h3>Peran di Tengah Masyarakat</h3>
+      <p>
+        Sebagai unit organisasi yang paling dekat dengan warga, Pimpinan Ranting Muhammadiyah berfungsi mengoordinasikan berbagai aktivitas dakwah, pendidikan, sosial, ekonomi, dan pemberdayaan masyarakat sesuai dengan kondisi serta kebutuhan lingkungan masing-masing. Melalui berbagai kegiatan keislaman, pengajian, pembinaan keluarga, penguatan amal usaha, serta pelayanan sosial kemasyarakatan, PRM menjadi motor penggerak kehidupan Persyarikatan di tingkat akar rumput.
+      </p>
+    </article>
+    <article class="rt-info">
+      <h3>Sinergi dengan PCM Masaran</h3>
+      <p>
+        Di bawah koordinasi Pimpinan Cabang Muhammadiyah (PCM) Masaran, seluruh Pimpinan Ranting Muhammadiyah senantiasa menjalin sinergi dalam melaksanakan program kerja cabang sekaligus mengembangkan inovasi sesuai dengan potensi wilayah masing-masing. Keberadaan ranting-ranting tersebut menjadi kekuatan utama dalam memperluas jangkauan dakwah Muhammadiyah, membangun ukhuwah Islamiah, serta meningkatkan kualitas kehidupan masyarakat yang berlandaskan nilai-nilai Al-Qur'an dan As-Sunnah.
+      </p>
+    </article>
+  </div>
+
+  <h2 class="rt-judul">Daftar Pimpinan Ranting Muhammadiyah</h2>
+  <p class="rt-ket">Pimpinan Ranting Muhammadiyah yang berada di bawah naungan PCM Masaran meliputi:</p>
+
+  <input type="text" id="rt-cari" class="rt-cari" placeholder="Cari ranting, misalnya: Jati">
+
+  <div class="rt-grid">
+    {% for r in ranting_list %}
+      <article class="rt-card" data-nama="{{ r|lower }}">
+        <span class="rt-no">{{ forloop.counter|stringformat:"02d" }}</span>
+        <div>
+          <small>Pimpinan Ranting Muhammadiyah</small>
+          <h3>PRM {{ r }}</h3>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <p class="rt-kosong" id="rt-kosong" hidden>Ranting tidak ditemukan.</p>
+
+  <blockquote class="rt-penutup">
+    Ketiga belas Pimpinan Ranting Muhammadiyah tersebut menjadi fondasi utama kekuatan organisasi di wilayah Pimpinan Cabang Muhammadiyah Masaran. Melalui semangat kebersamaan, kemandirian, dan pengabdian yang berlandaskan nilai-nilai Islam, setiap ranting terus berupaya meningkatkan kualitas dakwah, memperkuat pembinaan warga Persyarikatan, mengembangkan amal usaha, serta menghadirkan berbagai program yang memberikan manfaat nyata bagi masyarakat. Sinergi yang terbangun antara PCM, PRM, majelis, lembaga, organisasi otonom, dan amal usaha Muhammadiyah menjadi modal penting dalam mewujudkan Muhammadiyah Masaran sebagai gerakan Islam yang berkemajuan, mencerahkan, dan senantiasa memberikan solusi bagi kehidupan umat.
+  </blockquote>
 
 </section>
+
+<script>
+  const cari = document.getElementById("rt-cari");
+  const kartu = document.querySelectorAll(".rt-card");
+  const kosong = document.getElementById("rt-kosong");
+
+  cari.addEventListener("input", function () {
+    const kata = cari.value.trim().toLowerCase();
+    let tampil = 0;
+    kartu.forEach(function (k) {
+      const cocok = k.dataset.nama.includes(kata);
+      k.style.display = cocok ? "" : "none";
+      if (cocok) tampil++;
+    });
+    kosong.hidden = tampil !== 0;
+  });
+</script>
 
 {% endblock %}

@@ -1,71 +1,71 @@
-
 {% extends "core/base.html" %}
-
-{% block title %}
-Pimpinan - PCM Muhammadiyah
-{% endblock %}
+{% block title %}Pimpinan - PCM Muhammadiyah{% endblock %}
 
 {% block content %}
+<style>
+  .pb-wrap { max-width: 1100px; margin: 0 auto; padding: 50px 24px 80px; }
+  .pb-head { text-align: center; margin-bottom: 36px; }
+  .pb-label { color: #0a7040; font-weight: 700; letter-spacing: .22em; font-size: .8rem; margin-bottom: 8px; }
+  .pb-head h1 { font-size: 2.3rem; color: #14352a; margin-bottom: 8px; }
+  .pb-head p { color: #5a6b63; }
 
-<section class="section light">
+  .pb-bagan { display: flex; flex-direction: column; align-items: center; }
+  .pb-judul { background: #0a7040; color: #fff; padding: 8px 28px; border-radius: 999px; font-weight: 700; letter-spacing: .05em; }
+  .pb-baris { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 16px; }
+  .pb-garis { width: 3px; height: 28px; background: #0a7040; opacity: .45; }
 
-    <div class="container">
+  .pb-node { width: 100%; max-width: 580px; background: #fff; border-radius: 14px; border-left: 5px solid #0a7040; padding: 18px 22px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .pb-node .pb-jabatan { display: block; color: #0a7040; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .pb-node strong { font-size: 1.1rem; color: #14352a; }
 
-        <span class="section-label">
-            STRUKTUR ORGANISASI
-        </span>
+  .pb-utama { background: #0a7040; border-left-color: #a7f3c0; }
+  .pb-utama .pb-jabatan { color: #a7f3c0; }
+  .pb-utama strong { color: #fff; font-size: 1.3rem; }
 
-        <h1>Pimpinan Muhammadiyah</h1>
+  .pb-penasehat { width: auto; min-width: 250px; }
 
-        <div class="news-grid">
+  .pb-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+  .pb-chip { background: #e6f3ec; color: #0a5a34; font-size: .8rem; padding: 5px 12px; border-radius: 999px; }
+</style>
 
-            {% for leader in leaders %}
+<section class="pb-wrap">
 
-                <article class="news-card">
+  <div class="pb-head">
+    <p class="pb-label">STRUKTUR ORGANISASI</p>
+    <h1>Pimpinan Cabang Muhammadiyah Masaran</h1>
+    <p>Periode 2022–2027</p>
+  </div>
 
-                    {% if leader.photo %}
-                        <img
-                            src="{{ leader.photo.url }}"
-                            alt="{{ leader.name }}"
-                        >
-                    {% endif %}
+  <div class="pb-bagan">
 
-                    <div class="news-content">
-
-                        <h3>{{ leader.name }}</h3>
-
-                        <p>
-                            {{ leader.position }}
-                        </p>
-
-                        {% if leader.period %}
-                            <p>Periode: {{ leader.period }}</p>
-                        {% endif %}
-
-                        {% if leader.description %}
-                            <p>{{ leader.description }}</p>
-                        {% endif %}
-
-                    </div>
-
-                </article>
-
-            {% empty %}
-
-                <div class="empty-card">
-                    <h3>Data Pimpinan Belum Tersedia</h3>
-                    <p>
-                        Data pimpinan akan ditampilkan
-                        setelah diperoleh dari sumber yang terverifikasi.
-                    </p>
-                </div>
-
-            {% endfor %}
-
+    <div class="pb-judul">Penasehat</div>
+    <div class="pb-baris">
+      {% for nama in penasehat %}
+        <div class="pb-node pb-penasehat">
+          <span class="pb-jabatan">Penasehat</span>
+          <strong>{{ nama }}</strong>
         </div>
-
+      {% endfor %}
     </div>
 
-</section>
+    <div class="pb-garis"></div>
+    <div class="pb-judul">Pimpinan Pleno</div>
 
+    {% for p in pleno %}
+      <div class="pb-garis"></div>
+      <div class="pb-node {% if forloop.first %}pb-utama{% endif %}">
+        <span class="pb-jabatan">{{ p.jabatan }}</span>
+        <strong>{{ p.nama }}</strong>
+        {% if p.koordinator %}
+          <div class="pb-chips">
+            {% for k in p.koordinator %}
+              <span class="pb-chip">{{ k }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
 {% endblock %}

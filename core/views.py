@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.utils import timezone
@@ -68,17 +67,69 @@ def profil(request):
 
 
 def pimpinan(request):
-    leaders = Leader.objects.all()
+    penasehat = [
+        "Drs. H. Sutarno, MM",
+        "Ir. H. Suroto",
+    ]
+
+    pleno = [
+        {"jabatan": "Ketua", "nama": "H. Siyamto Umardani, S. Ag", "koordinator": []},
+        {"jabatan": "Wakil Ketua I", "nama": "Giyamto, S. Pd", "koordinator": [
+            "Majelis Pemberdayaan Masyarakat",
+            "Lazizmu",
+        ]},
+        {"jabatan": "Wakil Ketua II", "nama": "H. Sumarno, S. Th. I", "koordinator": [
+            "Lembaga Pembinaan Haji dan Umroh",
+            "Lembaga Pembinaan dan Pengawasan Keuangan",
+        ]},
+        {"jabatan": "Wakil Ketua III", "nama": "Parlan Sinung Darsono", "koordinator": [
+            "Majelis Pembinaan Kader – Sumber Daya Insani",
+            "Lembaga Sosial Budaya dan Olah Raga",
+            "Pembinaan Angkatan Muda Muhammadiyah dan Ortom",
+        ]},
+        {"jabatan": "Wakil Ketua IV", "nama": "H. Suyatno, S. Sos, M. Si", "koordinator": [
+            "Majelis Pemberdayaan Wakaf",
+            "Majelis Lingkungan Hidup",
+        ]},
+        {"jabatan": "Wakil Ketua V", "nama": "Muhammad Marjuki, S. Pd", "koordinator": [
+            "Majelis Tarjih, Tajdid, dan Tabligh",
+            "Lembaga Pengembangan Cabang Ranting dan Pembinaan Masjid",
+        ]},
+        {"jabatan": "Wakil Ketua VI", "nama": "Dr. H. Basuki Agus Suparno, MSI", "koordinator": [
+            "Majelis Pustaka dan Informasi",
+            "Majelis Hukum, HAM, dan Lembaga Bantuan Hukum",
+        ]},
+        {"jabatan": "Wakil Ketua VII", "nama": "Dr. Purwadi, M. Pd", "koordinator": [
+            "Majelis Dikdasmen",
+            "Lembaga Pengembangan Pesantren Muhammadiyah",
+        ]},
+        {"jabatan": "Wakil Ketua VIII", "nama": "Dr. H. Suharno, ST. MT", "koordinator": [
+            "Majelis Ekonomi dan Kewirausahaan",
+            "Lembaga Hikmah dan Kebijakan Publik",
+        ]},
+        {"jabatan": "Sekretaris", "nama": "Muhammad Effendi, S. Psi", "koordinator": []},
+        {"jabatan": "Wakil Sekretaris", "nama": "Drs. H. Taslim Daryanto, M. Pd", "koordinator": [
+            "MPKU dan Pelayanan Sosial",
+        ]},
+        {"jabatan": "Bendahara", "nama": "Dwi Daryanto, S. Pd. I", "koordinator": []},
+        {"jabatan": "Wakil Bendahara", "nama": "Muslih, S. Pd", "koordinator": [
+            "Lembaga Resiliensi Bencana",
+        ]},
+    ]
 
     return render(
         request,
         "core/pimpinan.html",
-        {"leaders": leaders},
+        {"penasehat": penasehat, "pleno": pleno},
     )
 
 
 def ranting(request):
-    ranting_list = Ranting.objects.all()
+    ranting_list = [
+        "Masaran", "Krikilan", "Gebang", "Pringanom", "Sepat",
+        "Krebet", "Jirapan", "Dawungan", "Karangmalang", "Sidodadi",
+        "Kliwonan", "Pilang", "Jati",
+    ]
 
     return render(
         request,

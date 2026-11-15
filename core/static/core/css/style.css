@@ -478,3 +478,405 @@ footer h3 {
         font-size: 11px;
     }
 }
+.pimpinan {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 24px 70px;
+}
+
+.pimpinan .label {
+  color: #0a7040;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.pimpinan h1 {
+  font-size: 2.4rem;
+  color: #14352a;
+  margin-bottom: 10px;
+}
+
+.pimpinan h2 {
+  margin: 48px 0 20px;
+  color: #0a7040;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #cfe6da;
+}
+
+.kartu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 22px;
+}
+
+.kartu {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  border-top: 4px solid #0a7040;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.kartu:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.kartu .jabatan {
+  color: #0a7040;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.kartu h3 {
+  font-size: 1.15rem;
+  color: #14352a;
+  margin-bottom: 4px;
+}
+
+.kartu .koordinator-label {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #cfe6da;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6b7f76;
+}
+
+.kartu ul {
+  margin: 8px 0 0 18px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #3a4a43;
+}
+.bagan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.bagan-judul {
+  background: #0a7040;
+  color: #fff;
+  padding: 8px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.bagan-baris {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.garis {
+  width: 3px;
+  height: 28px;
+  background: #0a7040;
+  opacity: 0.45;
+}
+
+.node {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 14px;
+  border-left: 5px solid #0a7040;
+  padding: 18px 22px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.node .jabatan {
+  display: block;
+  color: #0a7040;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.node strong {
+  font-size: 1.1rem;
+  color: #14352a;
+}
+
+.node-utama {
+  background: #0a7040;
+  border-left-color: #a7f3c0;
+}
+
+.node-utama .jabatan { color: #a7f3c0; }
+.node-utama strong { color: #fff; font-size: 1.3rem; }
+
+.node-penasehat {
+  width: auto;
+  min-width: 240px;
+  font-weight: 700;
+  color: #14352a;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chip {
+  background: #e6f3ec;
+  color: #0a5a34;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+/* ===== Halaman Ranting ===== */
+.rt-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a7040 0%, #064a2b 100%);
+  color: #fff;
+  padding: 80px 24px 90px;
+  text-align: center;
+}
+.rt-hero::before,
+.rt-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+.rt-hero::before { width: 360px; height: 360px; top: -140px; left: -100px; }
+.rt-hero::after  { width: 300px; height: 300px; bottom: -150px; right: -80px; }
+.rt-hero-inner { position: relative; max-width: 800px; margin: 0 auto; }
+.rt-label {
+  color: #a7f3c0;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  margin-bottom: 14px;
+}
+.rt-hero h1 { font-size: 2.6rem; line-height: 1.2; margin-bottom: 14px; }
+.rt-sub { opacity: 0.85; font-size: 1.1rem; }
+
+.rt-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px 80px; }
+
+.rt-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-top: -44px;
+  position: relative;
+}
+.rt-stat {
+  background: #fff;
+  border-radius: 16px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+.rt-stat strong { display: block; font-size: 2rem; color: #0a7040; }
+.rt-stat span { color: #5a6b63; font-size: 0.9rem; }
+
+.rt-lead {
+  margin: 50px 0 28px;
+  padding-left: 22px;
+  border-left: 5px solid #0a7040;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #1f3a2f;
+}
+
+.rt-dua {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+}
+.rt-info {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+.rt-info h3 { color: #0a7040; margin-bottom: 12px; font-size: 1.2rem; }
+.rt-info p { line-height: 1.75; color: #3a4a43; }
+
+.rt-judul {
+  margin: 64px 0 8px;
+  text-align: center;
+  color: #14352a;
+  font-size: 1.8rem;
+}
+.rt-ket { text-align: center; color: #5a6b63; margin-bottom: 22px; }
+
+.rt-cari {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 30px;
+  padding: 13px 20px;
+  border: 2px solid #cfe6da;
+  border-radius: 999px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+.rt-cari:focus { border-color: #0a7040; }
+
+.rt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+.rt-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.rt-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px rgba(10, 112, 64, 0.2);
+  background: #f2faf5;
+}
+.rt-no {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #0a7040;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rt-card small {
+  display: block;
+  font-size: 0.7rem;
+  color: #6b7f76;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.rt-card h3 { color: #14352a; font-size: 1.1rem; margin-top: 2px; }
+
+.rt-kosong { text-align: center; color: #6b7f76; margin-top: 20px; }
+
+.rt-penutup {
+  margin: 60px 0 0;
+  padding: 34px 38px;
+  background: linear-gradient(135deg, #0a7040, #064a2b);
+  color: #fff;
+  border-radius: 18px;
+  line-height: 1.85;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 600px) {
+  .rt-hero h1 { font-size: 1.9rem; }
+  .rt-penutup { padding: 24px; }
+}
+.bagan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.bagan-judul {
+  background: #0a7040;
+  color: #fff;
+  padding: 8px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.bagan-baris {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.garis {
+  width: 3px;
+  height: 28px;
+  background: #0a7040;
+  opacity: 0.45;
+}
+
+.node {
+  width: 100%;
+  max-width: 560px;
+  background: #fff;
+  border-radius: 14px;
+  border-left: 5px solid #0a7040;
+  padding: 18px 22px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.node .jabatan {
+  display: block;
+  color: #0a7040;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.node strong {
+  font-size: 1.1rem;
+  color: #14352a;
+}
+
+.node-utama {
+  background: #0a7040;
+  border-left-color: #a7f3c0;
+}
+
+.node-utama .jabatan { color: #a7f3c0; }
+.node-utama strong { color: #fff; font-size: 1.3rem; }
+
+.node-penasehat {
+  width: auto;
+  min-width: 240px;
+  font-weight: 700;
+  color: #14352a;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chip {
+  background: #e6f3ec;
+  color: #0a5a34;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
