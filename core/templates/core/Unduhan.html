@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+
+{% block title %}Unduhan - {{ site_profile.short_name|default:"PCM Masaran" }}{% endblock %}
+
+{% block content %}
+
+<section class="section">
+    <div class="container">
+
+        <span class="section-label">DOKUMEN</span>
+        <h1>Unduhan</h1>
+
+        <div class="news-grid">
+            {% for doc in documents %}
+                <article class="news-card">
+                    <div class="news-content">
+                        <h3>{{ doc.title }}</h3>
+                        {% if doc.description %}
+                            <p>{{ doc.description }}</p>
+                        {% endif %}
+                        <p>Diunggah: {{ doc.uploaded_at|date:"d F Y" }}</p>
+                        <a href="{{ doc.file.url }}" class="button" download>Unduh</a>
+                    </div>
+                </article>
+            {% empty %}
+                <div class="empty-card">
+                    <h3>Belum Ada Dokumen</h3>
+                    <p>Dokumen belum tersedia.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

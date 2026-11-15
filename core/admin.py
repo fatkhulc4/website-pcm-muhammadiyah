@@ -21,6 +21,12 @@ admin.site.index_title = "Kelola Konten Website PCM Masaran"
 class OrganizationProfileAdmin(admin.ModelAdmin):
     list_display = ("name", "phone", "email")
 
+    def has_add_permission(self, request):
+        # Hanya boleh ada satu baris profil
+        return not OrganizationProfile.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 @admin.register(Leader)
 class LeaderAdmin(admin.ModelAdmin):
@@ -48,6 +54,7 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ("title", "content")
     list_filter = ("status",)
     prepopulated_fields = {"slug": ("title",)}
+    date_hierarchy = "published_at"
 
 
 @admin.register(Event)
@@ -69,6 +76,9 @@ class IncomingMessageAdmin(admin.ModelAdmin):
     search_fields = ("name", "email", "subject")
     list_filter = ("is_read", "created_at")
     readonly_fields = ("name", "email", "subject", "message", "created_at")
+
+    def has_add_permission(self, request):
+        return False
 
 
 @admin.register(RelatedLink)

@@ -20,8 +20,7 @@ urlpatterns = [
     path("pimpinan/", views.pimpinan, name="pimpinan"),
     path("ranting/", views.ranting, name="ranting"),
     path("amal-usaha/", views.amal_usaha, name="amal_usaha"),
-    
-    # Kegiatan dan kontak
-    path("kegiatan/", views.kegiatan, name="kegiatan"),
+    path("agenda/", views.agenda, name="agenda"),    
+    path("unduhan/", views.unduhan, name="unduhan"),
     path("kontak/", views.kontak, name="kontak"),
 ]

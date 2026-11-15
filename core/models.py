@@ -5,14 +5,26 @@ from django.utils.text import slugify
 
 class OrganizationProfile(models.Model):
     name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=50, blank=True)
+    tagline = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
+    history = models.TextField(blank=True)
+    vision = models.TextField(blank=True)
+    mission = models.TextField(blank=True, help_text="Satu misi per baris")
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=30, blank=True)
     email = models.EmailField(blank=True)
-    logo = models.ImageField(
-        upload_to="organization/",
-        blank=True
-    )
+    member_count = models.PositiveIntegerField(null=True, blank=True)
+    logo = models.ImageField(upload_to="organization/", blank=True)
+    hero_image = models.ImageField(upload_to="organization/", blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Profil Organisasi"
+        verbose_name_plural = "Profil Organisasi"
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -29,7 +41,15 @@ class Leader(models.Model):
     period = models.CharField(max_length=50, blank=True)
     photo = models.ImageField(upload_to="leaders/", blank=True)
     description = models.TextField(blank=True)
+    order = models.PositiveIntegerField(default=0, help_text="Urutan tampil (kecil tampil lebih dulu)")
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Pimpinan"
+        verbose_name_plural = "Pimpinan"
+        ordering = ["order", "id"]
     def __str__(self):
         return self.name
 
@@ -40,7 +60,9 @@ class Leader(models.Model):
 
 class Ranting(models.Model):
     name = models.CharField(max_length=150)
+    chairman = models.CharField("Ketua", max_length=150, blank=True)
     address = models.TextField(blank=True)
+    phone = models.CharField(max_length=30, blank=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
@@ -87,6 +109,7 @@ class News(models.Model):
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=270, unique=True, blank=True)
+    summary = models.TextField(blank=True)
     content = models.TextField()
     image = models.ImageField(upload_to="news/", blank=True)
     status = models.CharField(
@@ -184,6 +207,7 @@ class RelatedLink(models.Model):
     url = models.URLField()
     description = models.CharField(max_length=250, blank=True)
     is_active = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -191,3 +215,4 @@ class RelatedLink(models.Model):
     class Meta:
         verbose_name = "Tautan Terkait"
         verbose_name_plural = "Tautan Terkait"
+        ordering = ["order", "id"]
