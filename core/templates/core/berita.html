@@ -5,105 +5,98 @@ Berita - PCM Muhammadiyah
 {% endblock %}
 
 {% block content %}
-
-<section class="section light">
-
+<section class="section news-page-section">
     <div class="container">
 
-        <span class="section-label">
-            INFORMASI TERBARU
-        </span>
-
-        <h1>Berita Muhammadiyah</h1>
-
-        <p class="description">
-            Informasi dan perkembangan kegiatan organisasi.
-        </p>
-
-
-        <div class="news-grid">
-
-            {% for news in page_obj %}
-
-                <article class="news-card">
-
-                    {% if news.image %}
-
-                        <img src="{{ news.image.url }}"
-                             alt="{{ news.title }}">
-
-                    {% endif %}
-
-                    <div class="news-content">
-
-                        <h2>{{ news.title }}</h2>
-
-                        <p>
-                            {{ news.content|truncatewords:30 }}
-                        </p>
-
-                        <small>
-                            {{ news.published_at|date:"d M Y" }}
-                        </small>
-
-                        <p>
-                            <a href="{% url 'core:detail_berita' news.slug %}">
-                                Baca Selengkapnya
-                            </a>
-                        </p>
-
-                    </div>
-
-                </article>
-
-            {% empty %}
-
-                <div class="empty-card">
-
-                    <h3>Belum Ada Berita</h3>
-
-                    <p>
-                        Belum ada berita yang dipublikasikan.
-                    </p>
-
-                </div>
-
-            {% endfor %}
-
+        <!-- Header Halaman Berita -->
+        <div class="news-header">
+            <span class="news-badge">KABAR &amp; INFORMASI TERBARU</span>
+            <h1>Berita Muhammadiyah</h1>
+            <p class="news-subtitle">
+                Informasi terkini, liputan kegiatan, dan perkembangan dakwah organisasi.
+            </p>
         </div>
 
+        {% if page_obj %}
+            <div class="news-grid-modern">
+                {% for news in page_obj %}
+                    <!-- Berita pertama di halaman 1 dibuat sebagai Featured Card (Sorotan Utama) -->
+                    <article class="news-card-modern {% if forloop.first and page_obj.number == 1 %}featured-news{% endif %}">
+                        
+                        <a href="{% url 'core:detail_berita' news.slug %}" class="news-thumb-wrapper">
+                            {% if news.image %}
+                                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-thumb">
+                            {% else %}
+                                <div class="news-thumb-placeholder">
+                                    <span>PCM Muhammadiyah</span>
+                                </div>
+                            {% endif %}
+                            
+                            {% if forloop.first and page_obj.number == 1 %}
+                                <span class="featured-tag">Terbaru</span>
+                            {% endif %}
+                        </a>
 
+                        <div class="news-card-body">
+                            <div class="news-meta">
+                                <span class="news-date">
+                                    📅 {{ news.published_at|date:"d M Y" }}
+                                </span>
+                            </div>
+
+                            <h2 class="news-card-title">
+                                <a href="{% url 'core:detail_berita' news.slug %}">
+                                    {{ news.title }}
+                                </a>
+                            </h2>
+
+                            <p class="news-card-excerpt">
+                                {% if news.summary %}
+                                    {{ news.summary|truncatewords:28 }}
+                                {% else %}
+                                    {{ news.content|truncatewords:25 }}
+                                {% endif %}
+                            </p>
+
+                            <div class="news-card-footer">
+                                <a href="{% url 'core:detail_berita' news.slug %}" class="read-more-btn">
+                                    Baca Selengkapnya <span class="arrow">→</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state-modern">
+                <div class="empty-icon">📰</div>
+                <h3>Belum Ada Berita</h3>
+                <p>Saat ini belum ada berita atau informasi kegiatan yang dipublikasikan.</p>
+            </div>
+        {% endif %}
+
+        <!-- Pagination Modern -->
         {% if page_obj.paginator.num_pages > 1 %}
-
-            <div class="pagination">
-
+            <div class="pagination-modern">
                 {% if page_obj.has_previous %}
-
-                    <a href="?page={{ page_obj.previous_page_number }}">
-                        Sebelumnya
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-btn">
+                        ← Sebelumnya
                     </a>
-
                 {% endif %}
 
-                <span>
-                    Halaman {{ page_obj.number }}
-                    dari {{ page_obj.paginator.num_pages }}
+                <span class="page-info">
+                    Halaman <strong>{{ page_obj.number }}</strong> dari {{ page_obj.paginator.num_pages }}
                 </span>
 
                 {% if page_obj.has_next %}
-
-                    <a href="?page={{ page_obj.next_page_number }}">
-                        Selanjutnya
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-btn">
+                        Selanjutnya →
                     </a>
-
                 {% endif %}
-
             </div>
-
         {% endif %}
 
     </div>
-
 </section>
-
 {% endblock %}
