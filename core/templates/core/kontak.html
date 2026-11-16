@@ -1,4 +1,3 @@
-
 {% extends "core/base.html" %}
 
 {% block title %}
@@ -8,41 +7,66 @@ Kontak - PCM Muhammadiyah
 {% block content %}
 
 <section class="section">
-
     <div class="container">
 
-        <span class="section-label">
-            HUBUNGI KAMI
-        </span>
-
+        <span class="section-label">HUBUNGI KAMI</span>
         <h1>Kontak Organisasi</h1>
-
-        <div class="empty-card">
-
-            <h3>Informasi Kontak</h3>
-
-            <p>
-                Informasi kontak resmi akan ditambahkan
-                setelah data organisasi tersedia dan diverifikasi.
-            </p>
-
-        </div>
+        <p class="kontak-intro">
+            Punya pertanyaan, saran, atau ingin bersilaturahmi?
+            Kirimkan pesan melalui formulir berikut.
+        </p>
 
         {% if messages %}
             {% for message in messages %}
-                <p class="alert">{{ message }}</p>
+                <div class="kontak-alert kontak-alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
             {% endfor %}
         {% endif %}
 
-        <h2>Kirim Pesan</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Kirim</button>
-        </form>
+        <div class="kontak-grid">
 
+            <aside class="kontak-info">
+                <h3>Informasi Kontak</h3>
+
+                <div class="kontak-item">
+                    <span class="kontak-label">Alamat Sekretariat</span>
+                    <p>{{ site_profile.address|default:"Belum tersedia" }}</p>
+                </div>
+
+                <div class="kontak-item">
+                    <span class="kontak-label">Telepon</span>
+                    <p>{{ site_profile.phone|default:"Belum tersedia" }}</p>
+                </div>
+
+                <div class="kontak-item">
+                    <span class="kontak-label">Email</span>
+                    <p>{{ site_profile.email|default:"Belum tersedia" }}</p>
+                </div>
+            </aside>
+
+            <div class="kontak-form-card">
+                <h3>Kirim Pesan</h3>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <div class="form-group{% if field.errors %} has-error{% endif %}">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                            {% for error in field.errors %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+
+                    <button type="submit" class="form-button">Kirim Pesan</button>
+                </form>
+            </div>
+
+        </div>
     </div>
-
 </section>
 
 {% endblock %}

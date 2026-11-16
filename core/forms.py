@@ -8,12 +8,19 @@ class ContactForm(forms.ModelForm):
         model = IncomingMessage
         fields = ["name", "email", "subject", "message"]
         labels = {
-            "name": "Nama",
-            "email": "Email",
+            "name": "Nama lengkap",
+            "email": "Alamat email",
             "subject": "Subjek",
             "message": "Pesan",
         }
-        widgets = {"message": forms.Textarea(attrs={"rows": 5})}
+        widgets = {
+            "name": forms.TextInput(attrs={"placeholder": "Nama Anda"}),
+            "email": forms.EmailInput(attrs={"placeholder": "nama@email.com"}),
+            "subject": forms.TextInput(attrs={"placeholder": "Tujuan pesan Anda"}),
+            "message": forms.Textarea(
+                attrs={"rows": 6, "placeholder": "Tulis pesan Anda (minimal 10 karakter)"}
+            ),
+        }
 
     def clean_message(self):
         message = self.cleaned_data["message"].strip()
