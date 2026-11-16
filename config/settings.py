@@ -39,6 +39,15 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 
+RAILWAY_DOMAIN = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
+if RAILWAY_DOMAIN:
+    ALLOWED_HOSTS.append(RAILWAY_DOMAIN)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{RAILWAY_DOMAIN}")
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+
 INSTALLED_APPS = [
     'jazzmin',
     "django.contrib.admin",
@@ -99,6 +108,16 @@ else:
 # Jika memakai connection pooler mode transaction (Supabase 6543 / Neon pooled),
 # aktifkan baris ini:
 # DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
+
+import sys
+
+if "test" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [
