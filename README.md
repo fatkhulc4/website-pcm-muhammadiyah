@@ -16,3 +16,12 @@ Proyek ini dibuat sebagai tugas mata kuliah Pemrograman Web berbasis Framework d
 - **Nama:** PCM Masaran
 - **Wilayah:** Kecamatan Masaran, Kabupaten Sragen, Jawa Tengah
 - **Tujuan website:** Website ini dibuat untuk memperkenalkan PCM Masaran kepada masyarakat sekaligus menjadi sarana publikasi berita, agenda, dan dokumen, serta menerima pesan dari masyarakat melalui formulir kontak. Seluruh isinya dapat dikelola pengurus lewat panel admin tanpa mengubah kode.
+
+### Sumber Data
+
+|        Data       |       Sumber      | Tanggal diambil | Pemberi izin |
+|-------------------|-------------------|-----------------|--------------|
+| Logo Muhammadiyah | Wikimedia Commons | 30 Oktober 2026 |       -      |
+| Profil, struktur pimpinan, ranting, amal usaha |  | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
+| Berita dan agenda | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
+| Foto | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
