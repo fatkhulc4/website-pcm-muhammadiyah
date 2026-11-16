@@ -59,3 +59,44 @@ uv run python manage.py runserver
 Buka `http://localhost:8000`. Panel admin ada di `http://localhost:8000/admin/`.
 
 Jika `DATABASE_URL` dan `STORAGE_BUCKET` dikosongkan, proyek memakai SQLite dan folder `media/` lokal.
+
+### Dengan Docker
+
+Docker telah dikonfigurasi menggunakan Dockerfile dan compose.yaml untuk menjalankan aplikasi Django dan PostgreSQL dalam container.
+
+Prasyarat: Docker Desktop sudah terpasang dan berjalan.
+
+```bash
+cp .env.example .env      # lalu isi nilainya
+docker compose up --build
+```
+
+Buka `http://localhost:8000`.
+
+Panel admin tersedia di `http://localhost:8000/admin/`.
+
+Untuk mengisi data awal PCM Masaran:
+
+```bash
+docker compose exec web uv run --no-sync python manage.py seed_pcm
+```
+
+Untuk membuat akun administrator:
+
+```bash
+docker compose exec web uv run --no-sync python manage.py createsuperuser
+```
+
+Untuk menghentikan container:
+
+```bash
+docker compose down
+```
+
+Untuk menghentikan container sekaligus menghapus volume database dan media:
+
+```bash
+docker compose down -v
+```
+
+**Catatan:** Perintah `docker compose down -v` akan menghapus volume database dan media yang tersimpan di Docker.
