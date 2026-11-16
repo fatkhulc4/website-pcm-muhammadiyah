@@ -10,3 +10,9 @@ Proyek ini dibuat sebagai tugas mata kuliah Pemrograman Web berbasis Framework d
 | 2  | Fatkhul Choiri    | L200240049 |
 | 3  | Vera Jeni Vertika | L200240061 |
 | 4  | Thoriq Fahma Amin | L200240063 |
+
+## PCM yang Dipilih
+
+- **Nama:** PCM Masaran
+- **Wilayah:** Kecamatan Masaran, Kabupaten Sragen, Jawa Tengah
+- **Tujuan website:** Website ini dibuat untuk memperkenalkan PCM Masaran kepada masyarakat sekaligus menjadi sarana publikasi berita, agenda, dan dokumen, serta menerima pesan dari masyarakat melalui formulir kontak. Seluruh isinya dapat dikelola pengurus lewat panel admin tanpa mengubah kode.
