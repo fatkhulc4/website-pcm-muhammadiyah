@@ -133,3 +133,7 @@ Tidak ditulis di repo. Kredensial dikirim terpisah ke dosen melalui Google Class
 ## Video Demo
 
 TO-DO
+
+## Slide Presentasi
+
+File PDF ada di [`docs/slides/`](docs/slides/).
