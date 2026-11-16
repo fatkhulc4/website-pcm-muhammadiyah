@@ -925,6 +925,7 @@ body {
     .footer-bottom p {
         font-size: 11px;
     }
+<<<<<<< Updated upstream
 }
 
 /* HP kecil */
@@ -2057,3 +2058,55 @@ body {
 .profile-mission li {
     margin-bottom: 8px;
 }
+=======
+
+
+
+}
+
+/* =====================================
+   ACTIVE NAVBAR - PCM MASARAN
+===================================== */
+
+.main-nav a {
+    position: relative;
+    display: inline-block;
+    padding: 11px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* MENU AKTIF */
+.main-nav a.active {
+    background: #d5f5df;
+    color: #087847 !important;
+    font-weight: 800;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* EFEK HOVER */
+.main-nav a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #d5f5df;
+    transform: translateY(-2px);
+}
+
+/* HOVER MENU AKTIF */
+.main-nav a.active:hover {
+    background: #b9ebc9;
+    color: #05643b !important;
+}
+
+/* PENYESUAIAN TAMPILAN HP */
+@media (max-width: 768px) {
+    .main-nav a {
+        padding: 12px 10px;
+    }
+
+    .main-nav a.active {
+        border-radius: 8px;
+    }
+}
+>>>>>>> Stashed changes

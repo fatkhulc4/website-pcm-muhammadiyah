@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <header class="navbar">
@@ -20,15 +21,52 @@
         </button>
 
         <nav class="main-nav" id="main-nav">
-            <a href="{% url 'core:home' %}">Beranda</a>
-            <a href="{% url 'core:profil' %}">Profil</a>
-            <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
-            <a href="{% url 'core:ranting' %}">Ranting</a>
-            <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
-            <a href="{% url 'core:berita' %}">Berita</a>
-            <a href="{% url 'core:agenda' %}">Agenda</a>
-            <a href="{% url 'core:unduhan' %}">Unduhan</a>
-            <a href="{% url 'core:kontak' %}">Kontak</a>
+
+            <a href="{% url 'core:home' %}"
+                class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                Beranda
+            </a>
+
+            <a href="{% url 'core:profil' %}"
+               class="{% if request.resolver_match.url_name == 'profil' %}active{% endif %}">
+                Profil
+            </a>
+
+            <a href="{% url 'core:pimpinan' %}"
+               class="{% if request.resolver_match.url_name == 'pimpinan' %}active{% endif %}">
+                Pimpinan
+            </a>
+
+            <a href="{% url 'core:ranting' %}"
+               class="{% if request.resolver_match.url_name == 'ranting' %}active{% endif %}">
+                Ranting
+            </a>
+
+            <a href="{% url 'core:amal_usaha' %}"
+               class="{% if request.resolver_match.url_name == 'amal_usaha' %}active{% endif %}">
+                Amal Usaha
+            </a>
+
+            <a href="{% url 'core:berita' %}"
+               class="{% if request.resolver_match.url_name == 'berita' %}active{% endif %}">
+                Berita
+            </a>
+
+            <a href="{% url 'core:agenda' %}"
+               class="{% if request.resolver_match.url_name == 'agenda' %}active{% endif %}">
+                Agenda
+            </a>
+
+            <a href="{% url 'core:unduhan' %}"
+               class="{% if request.resolver_match.url_name == 'unduhan' %}active{% endif %}">
+                Unduhan
+            </a>
+
+            <a href="{% url 'core:kontak' %}"
+               class="{% if request.resolver_match.url_name == 'kontak' %}active{% endif %}">
+                Kontak
+            </a>
+
         </nav>
 
     </div>
@@ -38,6 +76,7 @@
     (function () {
         var btn = document.getElementById('nav-toggle');
         var nav = document.getElementById('main-nav');
+
         btn.addEventListener('click', function () {
             var open = nav.classList.toggle('is-open');
             btn.classList.toggle('is-open', open);
