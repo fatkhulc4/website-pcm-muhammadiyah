@@ -126,3 +126,6 @@ Semua variabel `STORAGE_*` selain `STORAGE_BUCKET` wajib terisi jika `STORAGE_BU
 
 **Panel admin:** Login admin Django di `/admin/` untuk mengelola semua konten di atas dan membaca pesan masuk dari formulir kontak.
 
+## Akun Admin Demo
+
+Tidak ditulis di repo. Kredensial dikirim terpisah ke dosen melalui Google Classroom.
