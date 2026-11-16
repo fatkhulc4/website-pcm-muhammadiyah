@@ -11,12 +11,91 @@
     </title>
 
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=5">
+
+    <style>
+        /* CSS Langsung di Base untuk Navbar dan Logo */
+        .navbar {
+            background: #0a6b38;
+            padding: 15px 0;
+            color: white;
+            width: 100%;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 42px !important;
+            height: 42px !important;
+            object-fit: contain !important;
+        }
+
+        .nav-content nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-content nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-content nav a:hover {
+            color: #a8edc4;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Memanggil Navbar dari file partial -->
-    {% include "core/partials/navbar.html" %}
+    <!-- NAVBAR UTAMA (LANGSUNG DI SINI TANPA FILE PARTIAL) -->
+    <header class="navbar">
+        <div class="container nav-content">
+            
+            <!-- Logo & Nama -->
+            <a href="{% url 'core:home' %}" class="brand">
+                <img src="{% static 'core/images/logo.png' %}" 
+                     onerror="this.onerror=null; this.src='{% static 'images/logo.png' %}';" 
+                     alt="Logo" 
+                     class="brand-logo">
+                <span>PCM Masaran</span>
+            </a>
+
+            <!-- Menu Navigasi Lengkap Termasuk Berita -->
+            <nav>
+                <a href="{% url 'core:home' %}">Beranda</a>
+                <a href="{% url 'core:berita' %}">Berita</a>
+                <a href="{% url 'core:profil' %}">Profil</a>
+                <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
+                <a href="{% url 'core:ranting' %}">Ranting</a>
+                <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
+                <a href="{% url 'core:agenda' %}">Agenda</a>
+                <a href="{% url 'core:unduhan' %}">Unduhan</a>
+                <a href="{% url 'core:kontak' %}">Kontak</a>
+            </nav>
+
+        </div>
+    </header>
 
     <main>
         {% block content %}
