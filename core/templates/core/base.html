@@ -12,6 +12,32 @@
         object-fit: contain !important;
     }
 </style>
+
+    <header class="navbar">
+    <div class="container nav-content">
+        
+        <!-- Logo dan Nama Website -->
+        <a href="{% url 'core:home' %}" class="brand">
+            <!-- Pastikan tag img logo ini ada -->
+            <img src="{% static 'images/logo.png' %}" alt="Logo Muhammadiyah" class="brand-logo">
+            <span>PCM Masaran</span>
+        </a>
+
+        <!-- Menu Navigasi (Menu Berita sudah ditambahkan di sini) -->
+        <nav>
+            <a href="{% url 'core:home' %}">Beranda</a>
+            <a href="{% url 'core:berita' %}">Berita</a>
+            <a href="{% url 'core:profil' %}">Profil</a>
+            <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
+            <a href="{% url 'core:ranting' %}">Ranting</a>
+            <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
+            <a href="{% url 'core:agenda' %}">Agenda</a>
+            <a href="{% url 'core:unduhan' %}">Unduhan</a>
+            <a href="{% url 'core:kontak' %}">Kontak</a>
+        </nav>
+
+    </div>
+</header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
