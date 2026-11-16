@@ -20,12 +20,18 @@ Berita - PCM Muhammadiyah
         {% if page_obj %}
             <div class="news-grid-modern">
                 {% for news in page_obj %}
-                    <!-- Berita pertama di halaman 1 dibuat sebagai Featured Card (Sorotan Utama) -->
+                    <!-- Berita pertama di halaman 1 dibuat sebagai Featured Card -->
                     <article class="news-card-modern {% if forloop.first and page_obj.number == 1 %}featured-news{% endif %}">
                         
                         <a href="{% url 'core:detail_berita' news.slug %}" class="news-thumb-wrapper">
                             {% if news.image %}
-                                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-thumb">
+                                <img src="{{ news.image.url }}" 
+                                     alt="{{ news.title }}" 
+                                     class="news-thumb"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="news-thumb-placeholder" style="display: none;">
+                                    <span>PCM Muhammadiyah</span>
+                                </div>
                             {% else %}
                                 <div class="news-thumb-placeholder">
                                     <span>PCM Muhammadiyah</span>
