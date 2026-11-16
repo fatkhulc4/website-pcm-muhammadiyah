@@ -925,7 +925,7 @@ body {
     .footer-bottom p {
         font-size: 11px;
     }
-<<<<<<< Updated upstream
+
 }
 
 /* HP kecil */
@@ -940,12 +940,6 @@ body {
 
 }
 
-/* =========================================================
-   PCM MASARAN – style.css (sudah dirapikan)
-   Urutan: Reset → Dasar → Navbar → Hero → Konten → Berita
-           → Detail berita → Pagination → Profil → Footer
-           → Pimpinan → Ranting → Responsif
-   ========================================================= */
 
 /* ---------- RESET & DASAR ---------- */
 * {
@@ -2056,13 +2050,7 @@ body {
 }
 
 .profile-mission li {
-    margin-bottom: 8px;
-}
-=======
-
-
-
-}
+    margin-bottom: 8px;}
 
 /* =====================================
    ACTIVE NAVBAR - PCM MASARAN
@@ -2109,4 +2097,14 @@ body {
         border-radius: 8px;
     }
 }
->>>>>>> Stashed changes
+
+/* PENYESUAIAN TAMPILAN HP */
+@media (max-width: 768px) {
+    .main-nav a {
+        padding: 12px 10px;
+    }
+
+    .main-nav a.active {
+        border-radius: 8px;
+    }
+}
