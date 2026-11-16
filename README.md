@@ -34,3 +34,8 @@ Proyek ini dibuat sebagai tugas mata kuliah Pemrograman Web berbasis Framework d
 | Platform | Render (Web Service memakai `Dockerfile`, paket gratis) <!-- perbarui setelah deploy --> | Memakai `Dockerfile` yang sama dengan Docker lokal, HTTPS disediakan otomatis, dan paket gratis cukup untuk penilaian |
 | Database | PostgreSQL di Supabase (Session pooler, port 5432) | Database terkelola dan gratis. Session pooler mendukung IPv4 dan cocok dengan koneksi Django biasa. Row Level Security aktif di semua tabel |
 | Penyimpanan gambar | Supabase Storage lewat endpoint S3 dan `django-storages` (bucket publik `media`) | Disk server platform deploy tidak permanen, sehingga gambar upload akan hilang setelah redeploy jika disimpan lokal. Sudah diuji: gambar yang diunggah dari admin tersimpan di bucket |
+
+## Catatan layanan gratis
+
+- **Railway:** Menggunakan kredit uji coba (*trial credit* dengan batas saldo/waktu tertentu). Layanan web akan berhenti berjalan otomatis jika masa uji coba atau saldo kredit habis. Sisa kredit dapat dipantau melalui dashboard Railway.
+- **Supabase:** Proyek pada paket gratis akan dijeda (*paused*) otomatis apabila tidak ada aktivitas database selama 7 hari berturut-turut, dan dapat diaktifkan kembali melalui tombol **Resume project** di dashboard. Informasi lengkap dapat dilihat pada [dokumentasi Supabase](https://supabase.com/docs/guides/platform/free-plan-pausing).
