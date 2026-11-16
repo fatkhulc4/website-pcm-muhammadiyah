@@ -120,4 +120,9 @@ docker compose down -v
 
 Semua variabel `STORAGE_*` selain `STORAGE_BUCKET` wajib terisi jika `STORAGE_BUCKET` dipakai. Aplikasi akan berhenti dengan pesan error jika ada yang kosong.
 
+## Fitur
+
+**Halaman publik:** Profil, struktur pimpinan, ranting, amal usaha, berita, agenda, dokumen, tautan terkait, dan formulir kontak.
+
+**Panel admin:** Login admin Django di `/admin/` untuk mengelola semua konten di atas dan membaca pesan masuk dari formulir kontak.
 
