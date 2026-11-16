@@ -99,4 +99,25 @@ Untuk menghentikan container sekaligus menghapus volume database dan media:
 docker compose down -v
 ```
 
-**Catatan:** Perintah `docker compose down -v` akan menghapus volume database dan media yang tersimpan di Docker.
+## Environment Variable
+
+| Variabel | Fungsi |
+|----------|--------|
+| `SECRET_KEY` | Kunci rahasia Django. Wajib diisi |
+| `DEBUG` | Mode debug. Bawaannya `False` |
+| `ALLOWED_HOSTS` | Daftar host yang diizinkan, dipisah koma |
+| `CSRF_TRUSTED_ORIGINS` | Daftar origin tepercaya untuk CSRF, dipisah koma |
+| `HTTPS_ONLY` | `True` hanya di server HTTPS. Mengaktifkan redirect SSL, cookie aman, dan HSTS |
+| `HSTS_SECONDS` | Durasi HSTS dalam detik. Mulai dari 3600, naikkan setelah HTTPS terbukti stabil |
+| `DATABASE_URL` | URL PostgreSQL. Kosong berarti SQLite lokal |
+| `POSTGRES_PASSWORD` | Password database PostgreSQL untuk Docker Compose. Wajib diisi di `.env` saat memakai `docker compose` |
+| `STORAGE_BUCKET` | Nama bucket. Kosong berarti media disimpan di folder lokal |
+| `STORAGE_ENDPOINT` | Endpoint S3 dari Supabase Storage |
+| `STORAGE_REGION` | Region bucket |
+| `STORAGE_ACCESS_KEY` | Access key S3 |
+| `STORAGE_SECRET_KEY` | Secret key S3 |
+| `STORAGE_PUBLIC_DOMAIN` | Domain publik bucket tanpa `https://`, dipakai untuk membentuk URL gambar |
+
+Semua variabel `STORAGE_*` selain `STORAGE_BUCKET` wajib terisi jika `STORAGE_BUCKET` dipakai. Aplikasi akan berhenti dengan pesan error jika ada yang kosong.
+
+
