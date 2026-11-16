@@ -129,3 +129,7 @@ Semua variabel `STORAGE_*` selain `STORAGE_BUCKET` wajib terisi jika `STORAGE_BU
 ## Akun Admin Demo
 
 Tidak ditulis di repo. Kredensial dikirim terpisah ke dosen melalui Google Classroom.
+
+## Video Demo
+
+TO-DO
