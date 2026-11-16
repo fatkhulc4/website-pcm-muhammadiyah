@@ -39,3 +39,23 @@ Proyek ini dibuat sebagai tugas mata kuliah Pemrograman Web berbasis Framework d
 
 - **Railway:** Menggunakan kredit uji coba (*trial credit* dengan batas saldo/waktu tertentu). Layanan web akan berhenti berjalan otomatis jika masa uji coba atau saldo kredit habis. Sisa kredit dapat dipantau melalui dashboard Railway.
 - **Supabase:** Proyek pada paket gratis akan dijeda (*paused*) otomatis apabila tidak ada aktivitas database selama 7 hari berturut-turut, dan dapat diaktifkan kembali melalui tombol **Resume project** di dashboard. Informasi lengkap dapat dilihat pada [dokumentasi Supabase](https://supabase.com/docs/guides/platform/free-plan-pausing).
+
+## Cara Menjalankan
+
+### Dengan uv (di laptop)
+
+Prasyarat: Python 3.14 atau lebih baru dan [uv](https://docs.astral.sh/uv/).
+
+```bash
+git clone https://github.com/fatkhulc4/website-pcm-muhammadiyah.git
+cp .env.example .env      # lalu isi nilainya, minimal SECRET_KEY
+uv sync
+uv run python manage.py migrate
+uv run python manage.py seed_pcm
+uv run python manage.py createsuperuser
+uv run python manage.py runserver
+```
+
+Buka `http://localhost:8000`. Panel admin ada di `http://localhost:8000/admin/`.
+
+Jika `DATABASE_URL` dan `STORAGE_BUCKET` dikosongkan, proyek memakai SQLite dan folder `media/` lokal.
