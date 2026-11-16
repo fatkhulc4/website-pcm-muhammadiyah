@@ -2,42 +2,7 @@
 <!DOCTYPE html>
 <html lang="id">
 
-
 <head>
-    <style>
-    /* Paksa logo di navbar jadi besar dan proporsional */
-    .brand-logo {
-        width: 42px !important;
-        height: 42px !important;
-        object-fit: contain !important;
-    }
-</style>
-
-    <header class="navbar">
-    <div class="container nav-content">
-        
-        <!-- Logo dan Nama Website -->
-        <a href="{% url 'core:home' %}" class="brand">
-            <!-- Pastikan tag img logo ini ada -->
-            <img src="{% static 'images/logo.png' %}" alt="Logo Muhammadiyah" class="brand-logo">
-            <span>PCM Masaran</span>
-        </a>
-
-        <!-- Menu Navigasi (Menu Berita sudah ditambahkan di sini) -->
-        <nav>
-            <a href="{% url 'core:home' %}">Beranda</a>
-            <a href="{% url 'core:berita' %}">Berita</a>
-            <a href="{% url 'core:profil' %}">Profil</a>
-            <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
-            <a href="{% url 'core:ranting' %}">Ranting</a>
-            <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
-            <a href="{% url 'core:agenda' %}">Agenda</a>
-            <a href="{% url 'core:unduhan' %}">Unduhan</a>
-            <a href="{% url 'core:kontak' %}">Kontak</a>
-        </nav>
-
-    </div>
-</header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -46,11 +11,88 @@
     </title>
 
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=5">
+
+    <style>
+        /* CSS Langsung untuk Memastikan Logo Rapi dan Sejajar */
+        .navbar {
+            background: #087443;
+            padding: 18px 0;
+            color: white;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 86%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 42px !important;
+            height: 42px !important;
+            object-fit: contain !important;
+        }
+
+        .nav-content nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-content nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-content nav a:hover {
+            color: #d8f5df;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-    {% include "core/partials/navbar.html" %}
+    <!-- NAVBAR UTAMA -->
+    <header class="navbar">
+        <div class="container nav-content">
+            
+            <!-- Logo & Nama -->
+            <a href="{% url 'core:home' %}" class="brand">
+                <img src="{% static 'core/images/logo.png' %}" alt="Logo Muhammadiyah" class="brand-logo">
+                <span>PCM Masaran</span>
+            </a>
+
+            <!-- Menu Navigasi (Lengkap dengan Menu Berita) -->
+            <nav>
+                <a href="{% url 'core:home' %}">Beranda</a>
+                <a href="{% url 'core:berita' %}">Berita</a>
+                <a href="{% url 'core:profil' %}">Profil</a>
+                <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
+                <a href="{% url 'core:ranting' %}">Ranting</a>
+                <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
+                <a href="{% url 'core:agenda' %}">Agenda</a>
+                <a href="{% url 'core:unduhan' %}">Unduhan</a>
+                <a href="{% url 'core:kontak' %}">Kontak</a>
+            </nav>
+
+        </div>
+    </header>
 
     <main>
         {% block content %}
