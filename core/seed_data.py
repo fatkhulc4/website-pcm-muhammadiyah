@@ -175,3 +175,52 @@ DATA = {
         # setelah kamu pastikan URL-nya benar-benar bisa dibuka.
     ],
 }
+
+
+# ---------------------------------------------------------------------------
+# Tambahan dari "Rancangan Profil PCM Masaran" (diproses setelah DATA di atas)
+# ---------------------------------------------------------------------------
+DATA["profil"]["description"] += (
+    "\n\n"
+    "Kaderisasi dilakukan melalui tujuh Organisasi Otonom (Ortom): 'Aisyiyah, "
+    "Pemuda Muhammadiyah, Nasyiatul 'Aisyiyah, Ikatan Pelajar Muhammadiyah (IPM), "
+    "Hizbul Wathan, Tapak Suci Putera Muhammadiyah, dan Komando Kesiapsiagaan "
+    "Angkatan Muda Muhammadiyah (KOKAM).\n\n"
+    "Sepuluh majelis yang membantu pimpinan: Majelis Pembina Kesehatan Umum dan "
+    "Pelayanan Sosial; Pembinaan Kader dan Sumber Daya Insani; Pendayagunaan Wakaf; "
+    "Ekonomi dan Kewirausahaan; Pustaka dan Informasi; Pendidikan Dasar, Menengah, "
+    "dan Pendidikan Nonformal; Pemberdayaan Masyarakat; Tabligh, Tarjih, dan Tajdid; "
+    "Lingkungan Hidup; serta Hukum, HAM, dan Lembaga Bantuan Hukum.\n\n"
+    "Lembaga yang membantu pimpinan: Lembaga Pembinaan Haji dan Umrah; Pembinaan dan "
+    "Pengawasan Keuangan; Pengembangan Pesantren Muhammadiyah; Pengembangan Cabang, "
+    "Ranting, dan Pembinaan Masjid; Hikmah dan Kebijakan Publik; LAZISMU; serta "
+    "Seni, Budaya, dan Olahraga Pembinaan Angkatan Muda Muhammadiyah dan Ortom.\n\n"
+    "Program rutin: Pengajian Ahad Pagi, pengajian guru dan karyawan, pengajian "
+    "tingkat ranting, dan Sekolah Lansia."
+)
+
+DATA["amal_usaha"] += [
+    {"name": "Komunitas Fotografi", "category": "lainnya"},
+    {"name": "JagalMu", "category": "lainnya"},
+    {"name": "BikersMu", "category": "lainnya"},
+]
+
+_DESKRIPSI = {
+    "SMP Muhammadiyah 2 Masaran": "Membentuk peserta didik berkarakter Islami, berprestasi, kreatif, dan memiliki kemampuan akademik yang kompetitif.",
+    "MTs Muhammadiyah 3 Masaran": "Madrasah yang mengintegrasikan pendidikan umum dan agama Islam untuk mencetak generasi cerdas, religius, dan berakhlak mulia.",
+    "SD Muhammadiyah Terpadu Masaran": "Pembelajaran terpadu yang menggabungkan pendidikan umum, pendidikan agama, dan pembentukan karakter sejak dini.",
+    "MI Muhammadiyah Sidodadi": "Pendidikan dasar yang menanamkan nilai keislaman, kedisiplinan, dan kecintaan terhadap ilmu pengetahuan.",
+    "MI Muhammadiyah Kliwonan": "Membangun peserta didik yang beriman, cerdas, kreatif, dan peduli sosial melalui pembelajaran inovatif.",
+    "MI Muhammadiyah Pilang": "Mengintegrasikan pendidikan agama dan ilmu umum untuk mencetak generasi muslim yang unggul, mandiri, dan berakhlak mulia.",
+    "Rumah Tahfidz Daarul Arqom Muhammadiyah Masaran": "Pendidikan nonformal tahfiz Al-Qur'an di kompleks Balai Muhammadiyah Masaran.",
+    "Sekolah Lansia Aisyiyah Masaran": "Program pendidikan nonformal dan pembinaan keagamaan bagi lansia.",
+    "Masjid Amanah": "Masjid Muhammadiyah di kompleks Balai Muhammadiyah Masaran.",
+}
+for _aum in DATA["amal_usaha"]:
+    if _aum["name"] in _DESKRIPSI and not _aum.get("description"):
+        _aum["description"] = _DESKRIPSI[_aum["name"]]
+    elif _aum["name"].startswith(("KB ", "TK ", "BA ")) and not _aum.get("description"):
+        _aum["description"] = "Pendidikan anak usia dini di bawah naungan PCM dan PCA Masaran."
+    elif _aum["name"] in ("Komunitas Fotografi", "JagalMu", "BikersMu"):
+        _aum["description"] = "Komunitas binaan PCM Masaran."
+

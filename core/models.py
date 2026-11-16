@@ -18,6 +18,11 @@ class OrganizationProfile(models.Model):
     logo = models.ImageField(upload_to="organization/", blank=True)
     hero_image = models.ImageField(upload_to="organization/", blank=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    @property
+    def mission_list(self):
+        """Misi (satu per baris di admin) sebagai daftar."""
+        return [m.strip() for m in self.mission.splitlines() if m.strip()]
 
     def __str__(self):
         return self.name

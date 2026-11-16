@@ -133,6 +133,33 @@ class KontakTest(TestCase):
         self.assertEqual(IncomingMessage.objects.count(), 0)
 
 
+class AmalUsahaTest(TestCase):
+    def test_amal_usaha_dikelompokkan_per_bidang(self):
+        AmalUsaha.objects.create(name="SMA Uji", category="pendidikan")
+        AmalUsaha.objects.create(name="Klinik Uji", category="kesehatan")
+        response = self.client.get(reverse("core:amal_usaha"))
+        labels = [g["label"] for g in response.context["groups"]]
+        self.assertEqual(labels, ["Pendidikan", "Kesehatan"])
+        self.assertContains(response, "SMA Uji")
+        self.assertContains(response, "Klinik Uji")
+
+
+class ProfilTest(TestCase):
+    def test_misi_tampil_sebagai_daftar_bernomor(self):
+        OrganizationProfile.objects.create(
+            name="PCM Uji", vision="Visi uji", history="Sejarah uji",
+            mission="Misi satu\nMisi dua\n\nMisi tiga",
+        )
+        response = self.client.get(reverse("core:profil"))
+        self.assertEqual(
+            response.context["profile"].mission_list,
+            ["Misi satu", "Misi dua", "Misi tiga"],
+        )
+        self.assertContains(response, "<ol")
+        self.assertContains(response, "Sejarah uji")
+        self.assertContains(response, "Visi uji")
+
+
 class ContextProcessorTest(TestCase):
     def test_profil_dan_tautan_ada_di_semua_halaman(self):
         OrganizationProfile.objects.create(name="PCM Uji")

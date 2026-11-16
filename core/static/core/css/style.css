@@ -2038,3 +2038,22 @@ body {
         padding: 24px;
     }
 }
+
+
+/* ---------- PROFIL (sejarah, visi, misi) ---------- */
+.profile-content h3 {
+    margin: 28px 0 8px;
+    color: #087443;
+}
+
+.profile-content p {
+    margin-bottom: 12px;
+}
+
+.profile-mission {
+    margin: 0 0 12px 22px;
+}
+
+.profile-mission li {
+    margin-bottom: 8px;
+}

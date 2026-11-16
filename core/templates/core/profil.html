@@ -1,4 +1,3 @@
-
 {% extends "core/base.html" %}
 
 {% block title %}
@@ -11,9 +10,7 @@ Profil Organisasi - PCM Muhammadiyah
 
     <div class="container">
 
-        <span class="section-label">
-            TENTANG ORGANISASI
-        </span>
+        <span class="section-label">TENTANG ORGANISASI</span>
 
         <h1>Profil PCM Muhammadiyah</h1>
 
@@ -22,21 +19,39 @@ Profil Organisasi - PCM Muhammadiyah
             <div class="profile-content">
 
                 {% if profile.logo %}
-                    <img
-                        src="{{ profile.logo.url }}"
-                        alt="Logo organisasi"
-                        class="profile-logo"
-                    >
+                    <img src="{{ profile.logo.url }}" alt="Logo organisasi" class="profile-logo">
                 {% endif %}
 
                 <h2>{{ profile.name }}</h2>
 
-                <p>
-                    {{ profile.description|default:"Deskripsi belum tersedia."|linebreaks }}
-                </p>
+                {% if profile.tagline %}
+                    <p><em>{{ profile.tagline }}</em></p>
+                {% endif %}
+
+                <h3>Tentang</h3>
+                {{ profile.description|default:"Deskripsi belum tersedia."|linebreaks }}
+
+                {% if profile.history %}
+                    <h3>Sejarah</h3>
+                    {{ profile.history|linebreaks }}
+                {% endif %}
+
+                {% if profile.vision %}
+                    <h3>Visi</h3>
+                    <p>{{ profile.vision }}</p>
+                {% endif %}
+
+                {% if profile.mission_list %}
+                    <h3>Misi</h3>
+                    <ol class="profile-mission">
+                        {% for misi in profile.mission_list %}
+                            <li>{{ misi }}</li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
 
                 {% if profile.address %}
-                    <h3>Alamat</h3>
+                    <h3>Alamat Sekretariat</h3>
                     <p>{{ profile.address }}</p>
                 {% endif %}
 

@@ -1,4 +1,3 @@
-
 {% extends "core/base.html" %}
 
 {% block title %}
@@ -11,62 +10,65 @@ Amal Usaha - PCM Muhammadiyah
 
     <div class="container">
 
-        <span class="section-label">
-            KONTRIBUSI ORGANISASI
-        </span>
+        <span class="section-label">KONTRIBUSI ORGANISASI</span>
 
         <h1>Amal Usaha Muhammadiyah</h1>
 
-        <div class="news-grid">
+        {% for group in groups %}
 
-            {% for item in amal_list %}
+            <div class="amal-group">
 
-                <article class="news-card">
+                <h2>{{ group.label }}
+                    <span class="amal-count">{{ group.items|length }}</span>
+                </h2>
 
-                    {% if item.photo %}
-                        <img
-                            src="{{ item.photo.url }}"
-                            alt="{{ item.name }}"
-                        >
-                    {% endif %}
+                <div class="news-grid">
 
-                    <div class="news-content">
+                    {% for item in group.items %}
 
-                        <h3>{{ item.name }}</h3>
+                        <article class="news-card">
 
-                        <p>
-                            Kategori: {{ item.get_category_display }}
-                        </p>
+                            {% if item.photo %}
+                                <img src="{{ item.photo.url }}" alt="{{ item.name }}">
+                            {% endif %}
 
-                        {% if item.address %}
-                            <p>Alamat: {{ item.address }}</p>
-                        {% endif %}
+                            <div class="news-content">
 
-                        {% if item.phone %}
-                            <p>Telepon: {{ item.phone }}</p>
-                        {% endif %}
+                                <h3>{{ item.name }}</h3>
 
-                        {% if item.description %}
-                            <p>{{ item.description }}</p>
-                        {% endif %}
+                                {% if item.address %}
+                                    <p>Alamat: {{ item.address }}</p>
+                                {% endif %}
 
-                    </div>
+                                {% if item.phone %}
+                                    <p>Telepon: {{ item.phone }}</p>
+                                {% endif %}
 
-                </article>
+                                {% if item.description %}
+                                    <p>{{ item.description }}</p>
+                                {% endif %}
 
-            {% empty %}
+                            </div>
 
-                <div class="empty-card">
-                    <h3>Data Amal Usaha Belum Tersedia</h3>
-                    <p>
-                        Informasi Amal Usaha akan ditampilkan
-                        setelah data resmi tersedia.
-                    </p>
+                        </article>
+
+                    {% endfor %}
+
                 </div>
 
-            {% endfor %}
+            </div>
 
-        </div>
+        {% empty %}
+
+            <div class="empty-card">
+                <h3>Data Amal Usaha Belum Tersedia</h3>
+                <p>
+                    Informasi Amal Usaha akan ditampilkan
+                    setelah data resmi tersedia.
+                </p>
+            </div>
+
+        {% endfor %}
 
     </div>
 

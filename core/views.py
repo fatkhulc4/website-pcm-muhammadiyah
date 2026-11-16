@@ -150,12 +150,16 @@ def ranting(request):
 
 
 def amal_usaha(request):
-    amal_list = AmalUsaha.objects.all()
+    groups = []
+    for key, label in AmalUsaha.CATEGORY_CHOICES:
+        items = AmalUsaha.objects.filter(category=key).order_by("name")
+        if items.exists():
+            groups.append({"label": label, "items": items})
 
     return render(
         request,
         "core/amal_usaha.html",
-        {"amal_list": amal_list},
+        {"groups": groups},
     )
 
 
