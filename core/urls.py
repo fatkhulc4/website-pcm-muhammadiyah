@@ -4,6 +4,12 @@ from . import views
 
 app_name = "core"
 
+from django.contrib import admin
+
+admin.site.site_header = "Admin PCM Masaran"
+admin.site.site_title = "Admin PCM Masaran"
+admin.site.index_title = "Kelola Konten Website"
+
 urlpatterns = [
     path("", views.home, name="home"),
 
@@ -23,4 +29,6 @@ urlpatterns = [
     path("agenda/", views.agenda, name="agenda"),    
     path("unduhan/", views.unduhan, name="unduhan"),
     path("kontak/", views.kontak, name="kontak"),
+    
+    
 ]

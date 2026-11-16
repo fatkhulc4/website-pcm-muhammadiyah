@@ -1,0 +1,68 @@
+/* Navbar & brand */
+.navbar-success,
+.bg-success,
+.main-header.navbar-success {
+    background-color: #087443 !important;
+}
+
+.brand-link.navbar-success,
+.sidebar-dark-success .brand-link {
+    background-color: #075b36 !important;
+    border-bottom: 0;
+}
+
+/* Sidebar */
+.sidebar-dark-success {
+    background-color: #064b2e !important;
+}
+
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-dark-success .nav-sidebar > .nav-item > .nav-link:hover {
+    background-color: #087443 !important;
+    color: #ffffff !important;
+}
+
+/* Tombol */
+.btn-success,
+.btn-primary {
+    background-color: #087443 !important;
+    border-color: #087443 !important;
+}
+
+.btn-success:hover,
+.btn-primary:hover {
+    background-color: #075b36 !important;
+    border-color: #075b36 !important;
+}
+
+/* Link & judul */
+a {
+    color: #087443;
+}
+
+a:hover {
+    color: #15945c;
+}
+
+/* Kartu dan tabel */
+.card-primary.card-outline,
+.card-success.card-outline {
+    border-top-color: #087443;
+}
+
+.table thead th {
+    background: #eaf2ec;
+}
+
+/* Fokus input */
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #087443 !important;
+    box-shadow: 0 0 0 3px rgba(8, 116, 67, 0.15) !important;
+}
+
+body {
+    background-color: #f5f7f5;
+}
