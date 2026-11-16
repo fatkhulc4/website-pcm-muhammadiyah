@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
 from django.utils import timezone
 
+from .forms import ContactForm
 from .models import (
     OrganizationProfile,
     Leader,
@@ -171,4 +173,13 @@ def agenda(request):
 
 
 def kontak(request):
-    return render(request, "core/kontak.html")
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Pesan Anda berhasil dikirim. Terima kasih.")
+            return redirect("core:kontak")
+    else:
+        form = ContactForm()
+
+    return render(request, "core/kontak.html", {"form": form})

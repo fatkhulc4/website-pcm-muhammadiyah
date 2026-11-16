@@ -28,6 +28,19 @@ Kontak - PCM Muhammadiyah
 
         </div>
 
+        {% if messages %}
+            {% for message in messages %}
+                <p class="alert">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <h2>Kirim Pesan</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Kirim</button>
+        </form>
+
     </div>
 
 </section>
