@@ -25,14 +25,6 @@ class OrganizationProfile(models.Model):
     class Meta:
         verbose_name = "Profil Organisasi"
         verbose_name_plural = "Profil Organisasi"
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Profil Organisasi"
-        verbose_name_plural = "Profil Organisasi"
 
 
 class Leader(models.Model):
@@ -41,7 +33,9 @@ class Leader(models.Model):
     period = models.CharField(max_length=50, blank=True)
     photo = models.ImageField(upload_to="leaders/", blank=True)
     description = models.TextField(blank=True)
-    order = models.PositiveIntegerField(default=0, help_text="Urutan tampil (kecil tampil lebih dulu)")
+    order = models.PositiveIntegerField(
+        default=0, help_text="Urutan tampil (kecil tampil lebih dulu)"
+    )
 
     def __str__(self):
         return self.name
@@ -50,12 +44,6 @@ class Leader(models.Model):
         verbose_name = "Pimpinan"
         verbose_name_plural = "Pimpinan"
         ordering = ["order", "id"]
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Pimpinan"
-        verbose_name_plural = "Pimpinan"
 
 
 class Ranting(models.Model):
@@ -86,7 +74,7 @@ class AmalUsaha(models.Model):
     category = models.CharField(
         max_length=30,
         choices=CATEGORY_CHOICES,
-        default="lainnya"
+        default="lainnya",
     )
     address = models.TextField(blank=True)
     phone = models.CharField(max_length=30, blank=True)
@@ -115,7 +103,7 @@ class News(models.Model):
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        default="draft"
+        default="draft",
     )
     published_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -149,7 +137,7 @@ class PublishedNewsManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(
             status="published",
-            published_at__lte=timezone.now()
+            published_at__lte=timezone.now(),
         )
 
 
