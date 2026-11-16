@@ -48,9 +48,7 @@
             </a>
 
             <a href="{% url 'core:berita' %}"
-               class="{% if request.resolver_match.url_name == 'berita' %}active{% endif %}">
-                Berita
-            </a>
+                class="{% if request.resolver_match.url_name == 'berita' or request.resolver_match.url_name == 'detail_berita' %}active{% endif %}">
 
             <a href="{% url 'core:agenda' %}"
                class="{% if request.resolver_match.url_name == 'agenda' %}active{% endif %}">

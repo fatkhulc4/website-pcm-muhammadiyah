@@ -2087,14 +2087,15 @@ body {
     color: #05643b !important;
 }
 
-/* PENYESUAIAN TAMPILAN HP */
-@media (max-width: 768px) {
+/* PENYESUAIAN NAVBAR TABLET */
+@media (min-width: 769px) and (max-width: 1024px) {
     .main-nav a {
-        padding: 12px 10px;
+        padding: 10px 12px;
+        border-radius: 0;
     }
 
     .main-nav a.active {
-        border-radius: 8px;
+        border-radius: 0;
     }
 }
 
@@ -2102,6 +2103,7 @@ body {
 @media (max-width: 768px) {
     .main-nav a {
         padding: 12px 10px;
+        border-radius: 0;
     }
 
     .main-nav a.active {
