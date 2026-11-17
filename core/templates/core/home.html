@@ -149,6 +149,9 @@ Beranda - PCM Muhammadiyah
         </span>
 
         <h2>Kegiatan</h2>
+                {% if event_is_past and event_list %}
+            <p class="description">Kegiatan terbaru yang telah terlaksana.</p>
+        {% endif %}
 
         <div class="news-grid">
 

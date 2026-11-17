@@ -28,14 +28,23 @@ def home(request):
 
     news_list = News.published.all()[:3]
 
+    now = timezone.now()
     event_list = Event.objects.filter(
-        start_date__gte=timezone.now()
+        start_date__gte=now
     ).order_by("start_date")[:3]
+    event_is_past = False
+
+    if not event_list:
+        event_list = Event.objects.filter(
+            start_date__lt=now
+        ).order_by("-start_date")[:3]
+        event_is_past = True
 
     context = {
         "profile": profile,
         "news_list": news_list,
         "event_list": event_list,
+        "event_is_past": event_is_past,
     }
 
     return render(request, "core/home.html", context)
