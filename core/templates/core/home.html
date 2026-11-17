@@ -6,6 +6,128 @@ Beranda - PCM Muhammadiyah
 
 {% block content %}
 
+<style>
+  :root {
+    --bp-hijau: #0d6a3a;
+    --bp-hijau-tua: #0a4f2c;
+    --bp-hijau-muda: #e8f3ec;
+    --bp-teks: #444;
+    --bp-judul: #222;
+    --bp-garis: #d5e3da;
+  }
+
+  /* BAGIAN PROFIL DI BERANDA */
+  .bp-profil {
+    padding: 80px 0;
+  }
+  .bp-isi {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .bp-label {
+    display: block;
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--bp-hijau);
+  }
+  .bp-kiri h2 {
+    margin: 0 0 8px;
+    font-size: 38px;
+    line-height: 1.2;
+    color: var(--bp-judul);
+  }
+  .bp-kiri h3 {
+    margin: 0 0 22px;
+    font-size: 22px;
+    line-height: 1.3;
+    color: var(--bp-hijau);
+  }
+  .bp-kiri p {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--bp-teks);
+    text-align: justify;
+  }
+  .bp-tombol {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 26px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--bp-hijau);
+    border-radius: 8px;
+    text-decoration: none;
+  }
+  .bp-tombol:hover {
+    background: var(--bp-hijau-tua);
+  }
+
+  /* KARTU VISI MISI */
+  .bp-kanan {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .bp-visi {
+    padding: 26px 28px;
+    color: #fff;
+    background: var(--bp-hijau);
+    border-radius: 12px;
+  }
+  .bp-visi h4 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .bp-visi p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+  .bp-misi {
+    padding: 26px 28px;
+    background: #fff;
+    border: 1px solid var(--bp-garis);
+    border-radius: 12px;
+  }
+  .bp-misi h4 {
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: var(--bp-hijau);
+  }
+  .bp-misi ol {
+    margin: 0;
+    padding-left: 22px;
+  }
+  .bp-misi li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--bp-teks);
+  }
+  .bp-misi li:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .bp-profil { padding: 50px 0; }
+    .bp-isi { grid-template-columns: 1fr; gap: 30px; }
+    .bp-kiri h2 { font-size: 30px; }
+    .bp-kiri p { text-align: left; }
+  }
+</style>
+
 <section class="hero">
 
     <div class="container hero-content">
@@ -33,42 +155,41 @@ Beranda - PCM Muhammadiyah
 </section>
 
 
-<section class="section" id="profil">
+<section class="bp-profil" id="profil">
 
-    <div class="container">
+    <div class="bp-isi">
 
-        <span class="section-label">
-            TENTANG ORGANISASI
-        </span>
+        <div class="bp-kiri">
+            <span class="bp-label">TENTANG ORGANISASI</span>
+            <h2>Profil PCM Muhammadiyah</h2>
+            <h3>Pimpinan Cabang Muhammadiyah Masaran</h3>
 
-        <h2>Profil PCM Muhammadiyah</h2>
-
-        {% if profile %}
-
-            <h3>{{ profile.name }}</h3>
-
-            <p class="description">
-                {{ profile.description|default:"Deskripsi organisasi belum tersedia." }}
+            <p>
+                Pimpinan Cabang Muhammadiyah (PCM) Masaran merupakan salah satu struktur organisasi Persyarikatan Muhammadiyah pada tingkat kecamatan yang berada di bawah koordinasi Pimpinan Daerah Muhammadiyah (PDM) Kabupaten Sragen dan Pimpinan Wilayah Muhammadiyah (PWM) Jawa Tengah. Sebagai organisasi dakwah Islam yang berlandaskan Al-Qur'an dan As-Sunnah, PCM Masaran menjadi penggerak utama berbagai aktivitas dakwah, pendidikan, sosial, kesehatan, ekonomi, serta pemberdayaan masyarakat di wilayah Kecamatan Masaran.
+            </p>
+            <p>
+                PCM Masaran resmi berdiri pada tahun 1932 dan menjadi tonggak penting perkembangan Muhammadiyah di wilayah barat Kabupaten Sragen.
             </p>
 
-            {% if profile.address %}
-                <p>Alamat: {{ profile.address }}</p>
-            {% endif %}
+            <a href="{% url 'core:profil' %}" class="bp-tombol">Baca Profil Lengkap</a>
+        </div>
 
-            {% if profile.logo %}
-                <img src="{{ profile.logo.url }}"
-                     alt="Logo organisasi"
-                     width="150">
-            {% endif %}
-
-        {% else %}
-
-            <p class="description">
-                Informasi profil organisasi akan ditampilkan
-                setelah data resmi tersedia dan diverifikasi.
-            </p>
-
-        {% endif %}
+        <div class="bp-kanan">
+            <div class="bp-visi">
+                <h4>Visi</h4>
+                <p>Menegakkan dan menjunjung tinggi Agama Islam sehingga terwujud masyarakat Islam yang sebenar-benarnya.</p>
+            </div>
+            <div class="bp-misi">
+                <h4>Misi</h4>
+                <ol>
+                    <li>Meningkatkan kualitas iman, ibadah, dan akhlak warga cabang.</li>
+                    <li>Mengoptimalkan peran Pimpinan Ranting (PRM) di tingkat kelurahan/desa sebagai garda terdepan.</li>
+                    <li>Mengembangkan Amal Usaha Muhammadiyah (AUM) seperti sekolah, klinik, atau panti asuhan agar bermanfaat luas.</li>
+                    <li>Memperkuat dakwah amar ma'ruf nahi mungkar dan pembaharuan (tajdid).</li>
+                    <li>Menjalin kerja sama yang baik dengan masyarakat dan pemerintah setempat.</li>
+                </ol>
+            </div>
+        </div>
 
     </div>
 

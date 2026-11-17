@@ -1,85 +1,235 @@
 {% extends "core/base.html" %}
-
-{% block title %}
-Profil Organisasi - PCM Muhammadiyah
-{% endblock %}
+{% block title %}Profil Organisasi - PCM Muhammadiyah{% endblock %}
 
 {% block content %}
 
-<section class="section">
+<style>
+  :root {
+    --pf-hijau: #0d6a3a;
+    --pf-hijau-tua: #0a4f2c;
+    --pf-hijau-muda: #e8f3ec;
+    --pf-teks: #444;
+    --pf-judul: #222;
+    --pf-garis: #d5e3da;
+  }
 
-    <div class="container">
+  .pf-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 24px 80px;
+    box-sizing: border-box;
+  }
 
-        <span class="section-label">TENTANG ORGANISASI</span>
+  /* KEPALA HALAMAN */
+  .pf-label {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--pf-hijau);
+  }
+  .pf-wrap h1 {
+    margin: 0 0 12px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--pf-judul);
+  }
+  .pf-nama {
+    margin: 0 0 40px;
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 800;
+    color: var(--pf-hijau);
+  }
 
-        <h1>Profil PCM Muhammadiyah</h1>
+  /* VISI DAN MISI (dua kolom) */
+  .pf-visimisi {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 24px;
+    margin-bottom: 56px;
+  }
+  .pf-visi {
+    padding: 30px 32px;
+    color: #fff;
+    background: var(--pf-hijau);
+    border-radius: 12px;
+  }
+  .pf-visi h2 {
+    margin: 0 0 14px;
+    font-size: 24px;
+    color: #fff;
+  }
+  .pf-visi p {
+    margin: 0;
+    font-size: 19px;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+  .pf-misi {
+    padding: 30px 32px;
+    background: #fff;
+    border: 1px solid var(--pf-garis);
+    border-radius: 12px;
+  }
+  .pf-misi h2 {
+    margin: 0 0 14px;
+    font-size: 24px;
+    color: var(--pf-hijau);
+  }
+  .pf-misi ol {
+    margin: 0;
+    padding-left: 22px;
+  }
+  .pf-misi li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--pf-teks);
+  }
+  .pf-misi li:last-child {
+    margin-bottom: 0;
+  }
 
-        {% if profile %}
+  /* ISI PROFIL */
+  .pf-bagian {
+    margin-bottom: 44px;
+  }
+  .pf-bagian h2 {
+    margin: 0 0 16px;
+    padding-bottom: 10px;
+    font-size: 26px;
+    color: var(--pf-hijau);
+    border-bottom: 2px solid var(--pf-hijau);
+  }
+  .pf-bagian p {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--pf-teks);
+    text-align: justify;
+  }
 
-            <div class="profile-content">
+  /* DAFTAR ORTOM */
+  .pf-ortom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pf-ortom li {
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--pf-hijau-tua);
+    background: var(--pf-hijau-muda);
+    border-radius: 999px;
+  }
 
-                {% if profile.logo %}
-                    <img src="{{ profile.logo.url }}" alt="Logo organisasi" class="profile-logo">
-                {% endif %}
+  /* PENUTUP */
+  .pf-penutup {
+    margin: 0;
+    padding: 28px 32px;
+    background: #fff;
+    border-left: 5px solid var(--pf-hijau);
+    border-radius: 10px;
+  }
+  .pf-penutup p {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--pf-teks);
+    text-align: justify;
+  }
+  .pf-penutup p:last-child {
+    margin-bottom: 0;
+  }
 
-                <h2>{{ profile.name }}</h2>
+  /* RESPONSIF */
+  @media (max-width: 800px) {
+    .pf-wrap { padding-top: 40px; }
+    .pf-wrap h1 { font-size: 30px; }
+    .pf-nama { font-size: 22px; }
+    .pf-visimisi { grid-template-columns: 1fr; }
+    .pf-bagian h2 { font-size: 22px; }
+    .pf-bagian p,
+    .pf-penutup p { text-align: left; }
+    .pf-penutup { padding: 22px; }
+  }
+</style>
 
-                {% if profile.tagline %}
-                    <p><em>{{ profile.tagline }}</em></p>
-                {% endif %}
+<section class="pf-wrap">
 
-                <h3>Tentang</h3>
-                {{ profile.description|default:"Deskripsi belum tersedia."|linebreaks }}
+  <p class="pf-label">TENTANG ORGANISASI</p>
+  <h1>Profil PCM Muhammadiyah</h1>
+  <p class="pf-nama">PIMPINAN CABANG MUHAMMADIYAH MASARAN</p>
 
-                {% if profile.history %}
-                    <h3>Sejarah</h3>
-                    {{ profile.history|linebreaks }}
-                {% endif %}
-
-                {% if profile.vision %}
-                    <h3>Visi</h3>
-                    <p>{{ profile.vision }}</p>
-                {% endif %}
-
-                {% if profile.mission_list %}
-                    <h3>Misi</h3>
-                    <ol class="profile-mission">
-                        {% for misi in profile.mission_list %}
-                            <li>{{ misi }}</li>
-                        {% endfor %}
-                    </ol>
-                {% endif %}
-
-                {% if profile.address %}
-                    <h3>Alamat Sekretariat</h3>
-                    <p>{{ profile.address }}</p>
-                {% endif %}
-
-                {% if profile.phone %}
-                    <h3>Nomor Telepon</h3>
-                    <p>{{ profile.phone }}</p>
-                {% endif %}
-
-                {% if profile.email %}
-                    <h3>Email</h3>
-                    <p>{{ profile.email }}</p>
-                {% endif %}
-
-            </div>
-
-        {% else %}
-
-            <div class="empty-card">
-                <h3>Profil Belum Tersedia</h3>
-                <p>
-                    Informasi organisasi akan ditampilkan
-                    setelah data resmi diperoleh dan diverifikasi.
-                </p>
-            </div>
-
-        {% endif %}
-
+  <div class="pf-visimisi">
+    <div class="pf-visi">
+      <h2>Visi</h2>
+      <p>Menegakkan dan menjunjung tinggi Agama Islam sehingga terwujud masyarakat Islam yang sebenar-benarnya.</p>
     </div>
+    <div class="pf-misi">
+      <h2>Misi</h2>
+      <ol>
+        <li>Meningkatkan kualitas iman, ibadah, dan akhlak warga cabang.</li>
+        <li>Mengoptimalkan peran Pimpinan Ranting (PRM) di tingkat kelurahan/desa sebagai garda terdepan.</li>
+        <li>Mengembangkan Amal Usaha Muhammadiyah (AUM) seperti sekolah, klinik, atau panti asuhan agar bermanfaat luas.</li>
+        <li>Memperkuat dakwah amar ma'ruf nahi mungkar dan pembaharuan (tajdid).</li>
+        <li>Menjalin kerja sama yang baik dengan masyarakat dan pemerintah setempat.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Tentang</h2>
+    <p>Pimpinan Cabang Muhammadiyah (PCM) Masaran merupakan salah satu struktur organisasi Persyarikatan Muhammadiyah pada tingkat kecamatan yang berada di bawah koordinasi Pimpinan Daerah Muhammadiyah (PDM) Kabupaten Sragen dan Pimpinan Wilayah Muhammadiyah (PWM) Jawa Tengah. Sebagai organisasi dakwah Islam yang berlandaskan Al-Qur'an dan As-Sunnah, PCM Masaran menjadi penggerak utama berbagai aktivitas dakwah, pendidikan, sosial, kesehatan, ekonomi, serta pemberdayaan masyarakat di wilayah Kecamatan Masaran.</p>
+    <p>Muhammadiyah sendiri didirikan oleh KH. Ahmad Dahlan pada tanggal 18 November 1912 di Yogyakarta sebagai gerakan Islam yang mengusung semangat tajdid (pembaruan), pemurnian akidah, serta pembinaan umat melalui pendidikan, pelayanan sosial, kesehatan, dan dakwah amar makruf nahi mungkar. Semangat pembaruan tersebut kemudian berkembang ke berbagai daerah di Indonesia, termasuk Kabupaten Sragen.</p>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Sejarah Berdirinya PCM Masaran</h2>
+    <p>Di Kecamatan Masaran, benih-benih dakwah Muhammadiyah mulai tumbuh melalui aktivitas para ulama, tokoh masyarakat, dan warga yang memiliki kepedulian terhadap kemajuan pendidikan Islam dan kehidupan sosial keagamaan. Dengan semangat kebersamaan serta komitmen untuk menghadirkan dakwah Islam yang mencerahkan, Pimpinan Cabang Muhammadiyah Masaran resmi berdiri pada tahun 1932 pada masa Periode KH. Ibrahim tahun 1923-1932 serta bersama berdirinya group-group (ranting) di berbagai daerah antara lain: Gondang, Sukdono, Sambirejo, Gemolong, Karangmalang, Kalijambe, Sidoharjo. Berdirinya PCM Masaran menjadi tonggak penting perkembangan Muhammadiyah di wilayah barat Kabupaten Sragen.</p>
+    <p>Sejak awal berdirinya, PCM Masaran telah berupaya mengembangkan dakwah yang tidak hanya berorientasi pada pembinaan ibadah, tetapi juga diwujudkan melalui pelayanan nyata kepada masyarakat. Berbagai amal usaha di bidang pendidikan, pembinaan generasi muda, pelayanan sosial, kesehatan, pemberdayaan ekonomi, hingga pengembangan dakwah menjadi bukti nyata kontribusi Muhammadiyah dalam membangun masyarakat yang berkemajuan.</p>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Organisasi dan Kepemimpinan</h2>
+    <p>Dalam menjalankan roda organisasi, PCM Masaran menerapkan prinsip musyawarah, kolegial, serta kepemimpinan yang berlandaskan nilai-nilai Islam. Seluruh kebijakan strategis ditetapkan melalui Musyawarah Cabang (Musycab), yaitu forum permusyawaratan tertinggi di tingkat cabang yang melibatkan seluruh unsur Pimpinan Ranting Muhammadiyah (PRM), organisasi otonom (Ortom), majelis, lembaga, serta unsur pendukung lainnya. Melalui forum tersebut disusun program kerja, evaluasi pelaksanaan dakwah, pemilihan pimpinan, serta perumusan arah kebijakan organisasi untuk satu periode kepengurusan.</p>
+    <p>Sebagai organisasi dakwah yang terus berkembang, PCM Masaran memiliki peran sebagai koordinator seluruh Pimpinan Ranting Muhammadiyah yang tersebar di Kecamatan Masaran. Fungsi koordinatif tersebut meliputi pembinaan organisasi, pengembangan amal usaha Muhammadiyah (AUM), penguatan kaderisasi, pengelolaan dakwah, serta peningkatan kualitas pelayanan kepada masyarakat.</p>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Kaderisasi</h2>
+    <p>Kaderisasi merupakan salah satu pilar utama gerakan Muhammadiyah. Oleh karena itu, PCM Masaran secara berkesinambungan membina kader melalui berbagai Organisasi Otonom Muhammadiyah. Melalui organisasi-organisasi tersebut lahir kader-kader yang memiliki integritas, kompetensi, semangat pengabdian, dan kepemimpinan yang siap melanjutkan perjuangan Persyarikatan.</p>
+    <ul class="pf-ortom">
+      <li>'Aisyiyah</li>
+      <li>Pemuda Muhammadiyah</li>
+      <li>Nasyiatul 'Aisyiyah</li>
+      <li>Ikatan Pelajar Muhammadiyah (IPM)</li>
+      <li>Hizbul Wathan</li>
+      <li>Tapak Suci Putera Muhammadiyah</li>
+      <li>Komando Kesiapsiagaan Angkatan Muda Muhammadiyah (KOKAM)</li>
+    </ul>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Amal Usaha dan Program Dakwah</h2>
+    <p>Hingga saat ini, PCM Masaran terus berkembang menjadi salah satu cabang Muhammadiyah yang aktif dalam mengelola berbagai amal usaha. Berbagai lembaga pendidikan mulai dari Kelompok Bermain (KB), Taman Kanak-kanak (TK), Madrasah Ibtidaiyah (MI), Sekolah Dasar (SD), Madrasah Tsanawiyah (MTs), Sekolah Menengah Pertama (SMP), Sekolah Menengah Atas (SMA), Sekolah Menengah Kejuruan (SMK), hingga Pondok Pesantren Tahfiz Al-Qur'an menjadi bagian dari kontribusi Muhammadiyah dalam mencerdaskan kehidupan bangsa.</p>
+    <p>Selain pendidikan formal, PCM Masaran juga mengembangkan berbagai program dakwah masyarakat seperti pengajian rutin Ahad Pagi, pengajian guru dan karyawan, pengajian tingkat ranting, sekolah lansia, rumah tahfiz, pemberdayaan ekonomi umat, pengelolaan zakat, infak, dan sedekah melalui Lazismu, pembinaan masjid, pengembangan wakaf produktif, serta berbagai kegiatan sosial kemasyarakatan lainnya.</p>
+  </div>
+
+  <div class="pf-bagian">
+    <h2>Balai Muhammadiyah Masaran</h2>
+    <p>Balai Muhammadiyah Masaran berdiri di atas tanah wakaf keluarga Bapak Hartono dan kini menjadi pusat aktivitas dakwah Persyarikatan. Di kompleks tersebut berdiri Kantor Sekretariat PCM Masaran, Balai Muhammadiyah, Masjid Amanah, KB dan TK 'Aisyiyah Masaran 2, serta Rumah Tahfiz Daarul Arqam Muhammadiyah Masaran. Kawasan ini menjadi pusat koordinasi berbagai kegiatan organisasi sekaligus simbol semangat wakaf sebagai fondasi pembangunan umat.</p>
+  </div>
+
+  <blockquote class="pf-penutup">
+    <p>Memasuki abad kedua Muhammadiyah, PCM Masaran terus berkomitmen menjadi organisasi Islam yang berkemajuan dengan mengedepankan nilai keikhlasan, profesionalisme, akuntabilitas, dan pelayanan kepada masyarakat. Berbekal semangat Islam Berkemajuan, PCM Masaran berupaya melahirkan generasi muslim yang beriman, berilmu, berakhlak mulia, serta mampu memberikan manfaat bagi agama, bangsa, dan kemanusiaan.</p>
+    <p>Dengan dukungan seluruh pimpinan, kader, simpatisan, amal usaha, dan masyarakat, Pimpinan Cabang Muhammadiyah Masaran optimistis akan terus berkembang sebagai pusat dakwah Islam yang mencerahkan, membangun peradaban, memperkuat ukhuwah Islamiah, serta memberikan kontribusi nyata dalam mewujudkan masyarakat Islam yang sebenar-benarnya sebagaimana cita-cita luhur Persyarikatan Muhammadiyah.</p>
+  </blockquote>
 
 </section>
 
