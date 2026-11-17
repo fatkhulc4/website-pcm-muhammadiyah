@@ -5,105 +5,397 @@ Berita - PCM Muhammadiyah
 {% endblock %}
 
 {% block content %}
+<style>
+    .brand-logo { width: 42px !important; height: 42px !important; object-fit: contain; }
+    .footer-logo { width: 160px !important; height: 160px !important; object-fit: contain; }
 
-<section class="section light">
+    /* SECTION HALAMAN BERITA */
+    .news-page-section {
+        background: linear-gradient(180deg, #eaf3ed 0%, #f5f8f6 40%, #f5f7f5 100%);
+        padding: 60px 0 85px;
+    }
 
+    .news-header {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 44px;
+    }
+
+    .news-badge {
+        display: inline-block;
+        background: #d8efe1;
+        color: #087443;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        padding: 6px 16px;
+        border-radius: 50px;
+        margin-bottom: 12px;
+    }
+
+    .news-header h1 {
+        font-size: 32px;
+        font-weight: 800;
+        color: #0e3b26;
+        line-height: 1.25;
+        margin-bottom: 10px;
+    }
+
+    .news-subtitle {
+        font-size: 15px;
+        color: #546b5d;
+        line-height: 1.6;
+    }
+
+    /* GRID BERITA */
+    .news-grid-modern {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+    }
+
+    .news-card-modern {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(8, 116, 67, 0.08);
+        box-shadow: 0 8px 24px rgba(14, 59, 38, 0.05);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news-card-modern:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 36px rgba(8, 116, 67, 0.12);
+    }
+
+    /* THUMBNAIL GAMBAR */
+    .news-thumb-wrapper {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 210px;
+        overflow: hidden;
+        background: #e3efe7;
+        text-decoration: none;
+    }
+
+    .news-thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+    }
+
+    .news-card-modern:hover .news-thumb {
+        transform: scale(1.06);
+    }
+
+    .news-thumb-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #087443, #199e63);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.5px;
+        gap: 6px;
+    }
+
+    .featured-tag {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: #087443;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 5px 12px;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ISI KARTU */
+    .news-card-body {
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .news-meta {
+        margin-bottom: 8px;
+    }
+
+    .news-date {
+        font-size: 12px;
+        font-weight: 600;
+        color: #15945c;
+    }
+
+    .news-card-title {
+        font-size: 16.5px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin: 0 0 10px;
+    }
+
+    .news-card-title a {
+        color: #123826;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .news-card-title a:hover {
+        color: #087443;
+    }
+
+    .news-card-excerpt {
+        font-size: 14px;
+        color: #5c6e63;
+        line-height: 1.65;
+        margin-bottom: 18px;
+        flex-grow: 1;
+    }
+
+    .news-card-footer {
+        padding-top: 12px;
+        border-top: 1px solid #eef3f0;
+    }
+
+    .read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: #087443;
+        font-size: 13.5px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: gap 0.25s ease, color 0.25s ease;
+    }
+
+    .read-more-btn:hover {
+        color: #15945c;
+        gap: 10px;
+    }
+
+    /* FEATURED CARD (BERITA UTAMA PALING ATAS) */
+    .news-card-modern.featured-news {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+    }
+
+    .news-card-modern.featured-news .news-thumb-wrapper {
+        height: 100%;
+        min-height: 280px;
+    }
+
+    .news-card-modern.featured-news .news-card-body {
+        padding: 32px;
+        justify-content: center;
+    }
+
+    .news-card-modern.featured-news .news-card-title {
+        font-size: 19.5px;
+        margin-bottom: 12px;
+    }
+
+    .news-card-modern.featured-news .news-card-excerpt {
+        font-size: 14.5px;
+    }
+
+    /* EMPTY STATE */
+    .empty-state-modern {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 55px 24px;
+        text-align: center;
+        border: 1px dashed #bdd4c5;
+        max-width: 540px;
+        margin: 20px auto;
+    }
+
+    .empty-icon {
+        font-size: 40px;
+        margin-bottom: 12px;
+    }
+
+    .empty-state-modern h3 {
+        color: #0e3b26;
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .empty-state-modern p {
+        color: #5c6e63;
+        font-size: 14.5px;
+    }
+
+    /* PAGINATION */
+    .pagination-modern {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        margin-top: 48px;
+    }
+
+    .page-btn {
+        padding: 9px 18px;
+        background: #ffffff;
+        color: #087443;
+        border: 1.5px solid #087443;
+        border-radius: 50px;
+        font-size: 13.5px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.25s ease;
+    }
+
+    .page-btn:hover {
+        background: #087443;
+        color: #ffffff;
+    }
+
+    .page-info {
+        font-size: 13.5px;
+        color: #4a6153;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+        .news-grid-modern {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .news-card-modern.featured-news {
+            grid-template-columns: 1fr;
+        }
+        .news-card-modern.featured-news .news-thumb-wrapper {
+            min-height: 240px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .news-header h1 {
+            font-size: 25px;
+        }
+        .news-grid-modern {
+            grid-template-columns: 1fr;
+        }
+        .news-card-modern.featured-news .news-card-body {
+            padding: 22px;
+        }
+        .news-card-modern.featured-news .news-card-title {
+            font-size: 18px;
+        }
+    }
+</style>
+
+<section class="section news-page-section">
     <div class="container">
 
-        <span class="section-label">
-            INFORMASI TERBARU
-        </span>
-
-        <h1>Berita Muhammadiyah</h1>
-
-        <p class="description">
-            Informasi dan perkembangan kegiatan organisasi.
-        </p>
-
-
-        <div class="news-grid">
-
-            {% for news in page_obj %}
-
-                <article class="news-card">
-
-                    {% if news.image %}
-
-                        <img src="{{ news.image.url }}"
-                             alt="{{ news.title }}">
-
-                    {% endif %}
-
-                    <div class="news-content">
-
-                        <h2>{{ news.title }}</h2>
-
-                        <p>
-                            {{ news.content|truncatewords:30 }}
-                        </p>
-
-                        <small>
-                            {{ news.published_at|date:"d M Y" }}
-                        </small>
-
-                        <p>
-                            <a href="{% url 'core:detail_berita' news.slug %}">
-                                Baca Selengkapnya
-                            </a>
-                        </p>
-
-                    </div>
-
-                </article>
-
-            {% empty %}
-
-                <div class="empty-card">
-
-                    <h3>Belum Ada Berita</h3>
-
-                    <p>
-                        Belum ada berita yang dipublikasikan.
-                    </p>
-
-                </div>
-
-            {% endfor %}
-
+        <div class="news-header">
+            <span class="news-badge">KABAR &amp; INFORMASI TERBARU</span>
+            <h1>Berita Muhammadiyah</h1>
+            <p class="news-subtitle">
+                Informasi terkini, liputan kegiatan, dan perkembangan dakwah organisasi.
+            </p>
         </div>
 
+        {% if page_obj %}
+            <div class="news-grid-modern">
+                {% for news in page_obj %}
+                    <article class="news-card-modern {% if forloop.first and page_obj.number == 1 %}featured-news{% endif %}">
+                        
+                        <a href="{% url 'core:detail_berita' news.slug %}" class="news-thumb-wrapper">
+                            {% if news.image %}
+                                <img src="{{ news.image.url }}" 
+                                     alt="{{ news.title }}" 
+                                     class="news-thumb"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="news-thumb-placeholder" style="display: none;">
+                                    <span>📰</span>
+                                    <span>PCM Muhammadiyah</span>
+                                </div>
+                            {% else %}
+                                <div class="news-thumb-placeholder">
+                                    <span>📰</span>
+                                    <span>PCM Muhammadiyah</span>
+                                </div>
+                            {% endif %}
+                            
+                            {% if forloop.first and page_obj.number == 1 %}
+                                <span class="featured-tag">Terbaru</span>
+                            {% endif %}
+                        </a>
+
+                        <div class="news-card-body">
+                            <div class="news-meta">
+                                <span class="news-date">
+                                    📅 {{ news.published_at|date:"d M Y" }}
+                                </span>
+                            </div>
+
+                            <h2 class="news-card-title">
+                                <a href="{% url 'core:detail_berita' news.slug %}">
+                                    {{ news.title }}
+                                </a>
+                            </h2>
+
+                            <p class="news-card-excerpt">
+                                {% if news.summary %}
+                                    {{ news.summary|truncatewords:28 }}
+                                {% else %}
+                                    {{ news.content|truncatewords:25 }}
+                                {% endif %}
+                            </p>
+
+                            <div class="news-card-footer">
+                                <a href="{% url 'core:detail_berita' news.slug %}" class="read-more-btn">
+                                    Baca Selengkapnya <span class="arrow">→</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state-modern">
+                <div class="empty-icon">📰</div>
+                <h3>Belum Ada Berita</h3>
+                <p>Saat ini belum ada berita atau informasi kegiatan yang dipublikasikan.</p>
+            </div>
+        {% endif %}
 
         {% if page_obj.paginator.num_pages > 1 %}
-
-            <div class="pagination">
-
+            <div class="pagination-modern">
                 {% if page_obj.has_previous %}
-
-                    <a href="?page={{ page_obj.previous_page_number }}">
-                        Sebelumnya
+                    <a href="?page={{ page_obj.previous_page_number }}" class="page-btn">
+                        ← Sebelumnya
                     </a>
-
                 {% endif %}
 
-                <span>
-                    Halaman {{ page_obj.number }}
-                    dari {{ page_obj.paginator.num_pages }}
+                <span class="page-info">
+                    Halaman <strong>{{ page_obj.number }}</strong> dari {{ page_obj.paginator.num_pages }}
                 </span>
 
                 {% if page_obj.has_next %}
-
-                    <a href="?page={{ page_obj.next_page_number }}">
-                        Selanjutnya
+                    <a href="?page={{ page_obj.next_page_number }}" class="page-btn">
+                        Selanjutnya →
                     </a>
-
                 {% endif %}
-
             </div>
-
         {% endif %}
 
     </div>
-
 </section>
-
 {% endblock %}

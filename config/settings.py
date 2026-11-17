@@ -4,6 +4,7 @@ environment variable (lihat .env.example).
 """
 
 import os
+import sys
 from pathlib import Path
 
 import dj_database_url
@@ -44,12 +45,8 @@ if RAILWAY_DOMAIN:
     ALLOWED_HOSTS.append(RAILWAY_DOMAIN)
     CSRF_TRUSTED_ORIGINS.append(f"https://{RAILWAY_DOMAIN}")
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-CSRF_COOKIE_SECURE = not DEBUG
-SESSION_COOKIE_SECURE = not DEBUG
-
 INSTALLED_APPS = [
-    'jazzmin',
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -79,6 +76,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -105,11 +103,6 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-# Jika memakai connection pooler mode transaction (Supabase 6543 / Neon pooled),
-# aktifkan baris ini:
-# DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
-
-import sys
 
 if "test" in sys.argv:
     DATABASES = {
@@ -133,11 +126,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static & media
-STATIC_URL = "static/"
+# Static & media (Menggunakan garis miring '/' di depan agar tidak patah di sub-halaman)
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 STORAGES = {

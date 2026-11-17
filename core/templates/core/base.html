@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="id">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +10,115 @@
         {% block title %}Website PCM Muhammadiyah{% endblock %}
     </title>
 
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=8">
+
+    <style>
+        /* Gambar berita utama (featured) mengisi penuh area kiri kartu */
+        .featured-news img,
+        .featured-card img,
+        .news-featured img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: none !important;
+            object-fit: cover !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        /* Gambar kartu berita & agenda biasa tetap proporsional dan rata tengah */
+        .news-grid img,
+        .news-card img,
+        .event-card img {
+            display: block !important;
+            width: 100% !important;
+            max-width: 450px !important;
+            height: 250px !important;
+            object-fit: cover !important;
+            margin: 0 auto 16px auto !important;
+            border-radius: 10px !important;
+        }
+
+        /* CSS Langsung di Base untuk Navbar dan Logo */
+        .navbar {
+            background: #0a6b38;
+            padding: 15px 0;
+            color: white;
+            width: 100%;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 42px !important;
+            height: 42px !important;
+            object-fit: contain !important;
+        }
+
+        .nav-content nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-content nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-content nav a:hover {
+            color: #a8edc4;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-    {% include "core/partials/navbar.html" %}
+    <!-- NAVBAR UTAMA -->
+    <header class="navbar">
+        <div class="container nav-content">
+            
+            <!-- Logo & Nama -->
+            <a href="{% url 'core:home' %}" class="brand">
+                <img src="{% static 'core/img/logo-muhammadiyah.png' %}" alt="Logo Muhammadiyah" class="brand-logo">
+                <span>PCM Masaran</span>
+            </a>
+
+            <!-- Menu Navigasi Lengkap Termasuk Berita -->
+            <nav>
+                <a href="{% url 'core:home' %}">Beranda</a>
+                <a href="{% url 'core:berita' %}">Berita</a>
+                <a href="{% url 'core:profil' %}">Profil</a>
+                <a href="{% url 'core:pimpinan' %}">Pimpinan</a>
+                <a href="{% url 'core:ranting' %}">Ranting</a>
+                <a href="{% url 'core:amal_usaha' %}">Amal Usaha</a>
+                <a href="{% url 'core:agenda' %}">Agenda</a>
+                <a href="{% url 'core:unduhan' %}">Unduhan</a>
+                <a href="{% url 'core:kontak' %}">Kontak</a>
+            </nav>
+
+        </div>
+    </header>
 
     <main>
         {% block content %}

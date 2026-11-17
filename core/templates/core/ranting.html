@@ -3,6 +3,216 @@
 
 {% block content %}
 
+<style>
+  :root {
+    --rt-hijau: #0d6a3a;
+    --rt-hijau-muda: #e8f3ec;
+    --rt-teks: #444;
+    --rt-judul: #222;
+  }
+
+  /* Container utama: sama seperti halaman Profil */
+  .rt-hero-inner,
+  .rt-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  /* HERO */
+  .rt-hero {
+    padding: 70px 0 20px;
+  }
+  .rt-label {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--rt-hijau);
+  }
+  .rt-hero h1 {
+    margin: 0 0 14px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--rt-judul);
+  }
+  .rt-sub {
+    margin: 0;
+    font-size: 18px;
+    color: var(--rt-teks);
+  }
+
+  /* WRAP */
+  .rt-wrap {
+    padding-top: 20px;
+    padding-bottom: 70px;
+  }
+
+  /* STATISTIK */
+  .rt-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 20px 0 36px;
+  }
+  .rt-stat {
+    background: #fff;
+    border: 1px solid #dfe8e2;
+    border-left: 5px solid var(--rt-hijau);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .rt-stat strong {
+    display: block;
+    font-size: 30px;
+    color: var(--rt-hijau);
+    margin-bottom: 4px;
+  }
+  .rt-stat span {
+    font-size: 15px;
+    color: var(--rt-teks);
+  }
+
+  /* PARAGRAF PEMBUKA */
+  .rt-lead {
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--rt-teks);
+    margin: 0 0 36px;
+    max-width: 960px;
+    text-align: justify;
+  }
+
+  /* DUA KOLOM INFO */
+  .rt-dua {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+  .rt-info {
+    background: #fff;
+    border: 1px solid #dfe8e2;
+    border-radius: 12px;
+    padding: 28px 30px;
+  }
+  .rt-info h3 {
+    margin: 0 0 14px;
+    font-size: 22px;
+    color: var(--rt-judul);
+  }
+  .rt-info p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--rt-teks);
+    text-align: justify;
+  }
+
+  /* JUDUL DAFTAR */
+  .rt-judul {
+    margin: 0 0 10px;
+    font-size: 30px;
+    color: var(--rt-hijau);
+  }
+  .rt-ket {
+    margin: 0 0 22px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--rt-teks);
+  }
+
+  /* PENCARIAN */
+  .rt-cari {
+    width: 100%;
+    max-width: 420px;
+    padding: 12px 16px;
+    margin-bottom: 26px;
+    font-size: 15px;
+    border: 1px solid #cfdcd3;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .rt-cari:focus {
+    border-color: var(--rt-hijau);
+    box-shadow: 0 0 0 3px rgba(13, 106, 58, .15);
+  }
+
+  /* GRID KARTU RANTING */
+  .rt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .rt-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid #dfe8e2;
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .rt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+  }
+  .rt-no {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--rt-hijau-muda);
+    color: var(--rt-hijau);
+    font-weight: 700;
+    border-radius: 50%;
+  }
+  .rt-card small {
+    display: block;
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 3px;
+  }
+  .rt-card h3 {
+    margin: 0;
+    font-size: 17px;
+    color: var(--rt-judul);
+  }
+  .rt-kosong {
+    margin-top: 20px;
+    color: #777;
+  }
+
+  /* PENUTUP */
+  .rt-penutup {
+    margin: 50px 0 0;
+    padding: 26px 30px;
+    background: var(--rt-hijau-muda);
+    border-left: 5px solid var(--rt-hijau);
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1.95;
+    color: var(--rt-teks);
+    text-align: justify;
+  }
+
+  /* RESPONSIF */
+  @media (max-width: 768px) {
+    .rt-hero { padding-top: 40px; }
+    .rt-hero h1 { font-size: 30px; }
+    .rt-stats,
+    .rt-dua { grid-template-columns: 1fr; }
+    .rt-lead,
+    .rt-info p,
+    .rt-penutup { text-align: left; }
+  }
+</style>
+
 <section class="rt-hero">
   <div class="rt-hero-inner">
     <p class="rt-label">JARINGAN DAKWAH AKAR RUMPUT</p>
@@ -72,20 +282,22 @@
 </section>
 
 <script>
-  const cari = document.getElementById("rt-cari");
-  const kartu = document.querySelectorAll(".rt-card");
-  const kosong = document.getElementById("rt-kosong");
-
-  cari.addEventListener("input", function () {
-    const kata = cari.value.trim().toLowerCase();
-    let tampil = 0;
-    kartu.forEach(function (k) {
-      const cocok = k.dataset.nama.includes(kata);
-      k.style.display = cocok ? "" : "none";
-      if (cocok) tampil++;
+  // Pencarian ranting (lewati bagian ini kalau JS pencarian sudah ada di base.html / file lain)
+  (function () {
+    var input = document.getElementById('rt-cari');
+    var kosong = document.getElementById('rt-kosong');
+    if (!input) return;
+    input.addEventListener('input', function () {
+      var q = input.value.toLowerCase().trim();
+      var ada = 0;
+      document.querySelectorAll('.rt-card').forEach(function (c) {
+        var cocok = c.dataset.nama.indexOf(q) !== -1;
+        c.style.display = cocok ? '' : 'none';
+        if (cocok) ada++;
+      });
+      kosong.hidden = ada > 0;
     });
-    kosong.hidden = tampil !== 0;
-  });
+  })();
 </script>
 
 {% endblock %}
