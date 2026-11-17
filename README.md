@@ -23,8 +23,8 @@ Proyek ini dibuat sebagai tugas mata kuliah Pemrograman Web berbasis Framework d
 |-------------------|-------------------|-----------------|--------------|
 | Logo Muhammadiyah | Wikimedia Commons | 30 Oktober 2026 |       -      |
 | Profil, struktur pimpinan, ranting, amal usaha | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
-| Berita dan agenda | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
-| Foto | Pengurus PCM Masaran | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
+| Berita dan agenda | pcmmasaran.blogspot.com | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
+| Foto | pcmmasaran.blogspot.com | 30 Oktober 2026 | Bapak Jumadi (Ketua Pustaka Informasi ) |
 
 ## Produksi
 
