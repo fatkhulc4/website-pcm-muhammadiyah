@@ -1,40 +1,214 @@
 {% extends "core/base.html" %}
-
-{% block title %}Agenda - {{ site_profile.short_name|default:"PCM Masaran" }}{% endblock %}
+{% block title %}Agenda - PCM Muhammadiyah{% endblock %}
 
 {% block content %}
 
-<section class="section">
-    <div class="container">
+<style>
+  :root {
+    --ag-hijau: #0d6a3a;
+    --ag-hijau-tua: #0a4f2c;
+    --ag-hijau-muda: #e8f3ec;
+    --ag-teks: #444;
+    --ag-judul: #222;
+    --ag-garis: #d5e3da;
+  }
 
-        <span class="section-label">AGENDA ORGANISASI</span>
-        <h1>Agenda Kegiatan</h1>
+  .ag-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 24px 80px;
+    box-sizing: border-box;
+  }
 
-        <h2>Agenda Akan Datang</h2>
-        <div class="news-grid">
-            {% for event in upcoming %}
-                {% include "core/partials/event_card.html" %}
-            {% empty %}
-                <div class="empty-card">
-                    <h3>Belum Ada Agenda</h3>
-                    <p>Agenda mendatang belum tersedia.</p>
-                </div>
-            {% endfor %}
-        </div>
+  /* KEPALA HALAMAN */
+  .ag-label {
+    display: block;
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--ag-hijau);
+  }
+  .ag-wrap h1 {
+    margin: 0 0 14px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--ag-judul);
+  }
+  .ag-intro {
+    max-width: 720px;
+    margin: 0 0 48px;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--ag-teks);
+  }
 
-        <h2>Agenda Sudah Terlaksana</h2>
-        <div class="news-grid">
-            {% for event in past %}
-                {% include "core/partials/event_card.html" %}
-            {% empty %}
-                <div class="empty-card">
-                    <h3>Belum Ada Riwayat</h3>
-                    <p>Belum ada agenda yang sudah terlaksana.</p>
-                </div>
-            {% endfor %}
-        </div>
+  /* JUDUL BAGIAN */
+  .ag-bagian {
+    margin-bottom: 56px;
+  }
+  .ag-bagian:last-child {
+    margin-bottom: 0;
+  }
+  .ag-judul {
+    margin: 0 0 26px;
+    padding-bottom: 14px;
+    font-size: 30px;
+    line-height: 1.3;
+    color: var(--ag-hijau);
+    border-bottom: 2px solid var(--ag-hijau);
+  }
 
-    </div>
+  /* KARTU AGENDA */
+  .ag-daftar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .ag-card {
+    padding: 32px 34px 34px;
+    background: #fff;
+    border: 1px solid var(--ag-garis);
+    border-left: 5px solid var(--ag-hijau);
+    border-radius: 12px;
+  }
+  .ag-card h3 {
+    margin: 0 0 14px;
+    font-size: 26px;
+    line-height: 1.35;
+    color: var(--ag-judul);
+  }
+
+  /* TANGGAL DAN LOKASI */
+  .ag-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+  }
+  .ag-meta li {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ag-hijau-tua);
+    background: var(--ag-hijau-muda);
+    border-radius: 999px;
+  }
+
+  /* TEKS DI ATAS FOTO */
+  .ag-desk p {
+    margin: 0 0 16px;
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--ag-teks);
+    text-align: justify;
+  }
+  .ag-desk p:last-child {
+    margin-bottom: 0;
+  }
+  .ag-foto {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    margin: 26px 0 0;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .ag-kosong {
+    padding: 28px 30px;
+    font-size: 16px;
+    color: var(--ag-teks);
+    background: #fff;
+    border: 1px solid var(--ag-garis);
+    border-radius: 12px;
+  }
+
+  /* RESPONSIF */
+  @media (max-width: 800px) {
+    .ag-wrap { padding-top: 40px; }
+    .ag-wrap h1 { font-size: 30px; }
+    .ag-judul { font-size: 24px; }
+    .ag-card { padding: 22px 20px 24px; }
+    .ag-card h3 { font-size: 21px; }
+    .ag-desk p { text-align: left; }
+    .ag-foto { max-height: 300px; }
+  }
+</style>
+
+<section class="ag-wrap">
+
+  <span class="ag-label">KEGIATAN ORGANISASI</span>
+  <h1>Agenda PCM Masaran</h1>
+  <p class="ag-intro">
+    Jadwal dan dokumentasi kegiatan Pimpinan Cabang Muhammadiyah Masaran.
+  </p>
+
+  <div class="ag-bagian">
+    <h2 class="ag-judul">Agenda Mendatang</h2>
+
+    {% if upcoming %}
+      <div class="ag-daftar">
+        {% for event in upcoming %}
+          <article class="ag-card">
+            <h3>{{ event.title }}</h3>
+
+            <ul class="ag-meta">
+              <li>
+                {{ event.start_date|date:"j F Y" }}{% if event.end_date and event.end_date.date != event.start_date.date %} – {{ event.end_date|date:"j F Y" }}{% endif %}
+              </li>
+              {% if event.location %}
+                <li>{{ event.location }}</li>
+              {% endif %}
+            </ul>
+
+            <div class="ag-desk">{{ event.description|linebreaks }}</div>
+
+            {% if event.image %}
+              <img class="ag-foto" src="{{ event.image.url }}" alt="{{ event.title }}">
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="ag-kosong">Agenda mendatang belum tersedia.</div>
+    {% endif %}
+  </div>
+
+  <div class="ag-bagian">
+    <h2 class="ag-judul">Agenda Sudah Terlaksana</h2>
+
+    {% if past %}
+      <div class="ag-daftar">
+        {% for event in past %}
+          <article class="ag-card">
+            <h3>{{ event.title }}</h3>
+
+            <ul class="ag-meta">
+              <li>
+                {{ event.start_date|date:"j F Y" }}{% if event.end_date and event.end_date.date != event.start_date.date %} – {{ event.end_date|date:"j F Y" }}{% endif %}
+              </li>
+              {% if event.location %}
+                <li>{{ event.location }}</li>
+              {% endif %}
+            </ul>
+
+            <div class="ag-desk">{{ event.description|linebreaks }}</div>
+
+            {% if event.image %}
+              <img class="ag-foto" src="{{ event.image.url }}" alt="{{ event.title }}">
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="ag-kosong">Belum ada agenda yang terlaksana.</div>
+    {% endif %}
+  </div>
+
 </section>
 
 {% endblock %}
