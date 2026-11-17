@@ -10,16 +10,32 @@
         {% block title %}Website PCM Muhammadiyah{% endblock %}
     </title>
 
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=7">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=8">
 
     <style>
-        /* Memaksa semua gambar konten (berita & agenda) di dalam <main> mengecil dan rata tengah */
-        main img {
+        /* Gambar berita utama (featured) mengisi penuh area kiri kartu */
+        .featured-news img,
+        .featured-card img,
+        .news-featured img {
             display: block !important;
             width: 100% !important;
-            max-width: 450px !important;       /* Ubah angka ini (misal 360px atau 400px) jika ingin lebih kecil */
-            height: auto !important;           /* Menjaga rasio foto asli agar tidak terpotong */
-            margin: 0 auto 18px auto !important; /* Membuat posisi gambar rata tengah */
+            height: 100% !important;
+            max-width: none !important;
+            object-fit: cover !important;
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        /* Gambar kartu berita & agenda biasa tetap proporsional dan rata tengah */
+        .news-grid img,
+        .news-card img,
+        .event-card img {
+            display: block !important;
+            width: 100% !important;
+            max-width: 450px !important;
+            height: 250px !important;
+            object-fit: cover !important;
+            margin: 0 auto 16px auto !important;
             border-radius: 10px !important;
         }
 
