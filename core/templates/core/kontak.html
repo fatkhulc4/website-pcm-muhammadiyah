@@ -6,67 +6,252 @@ Kontak - PCM Muhammadiyah
 
 {% block content %}
 
-<section class="section">
-    <div class="container">
+<style>
+  :root {
+    --kt-hijau: #0d6a3a;
+    --kt-hijau-tua: #0a4f2c;
+    --kt-hijau-muda: #e8f3ec;
+    --kt-teks: #444;
+    --kt-judul: #222;
+    --kt-garis: #d5e3da;
+    --kt-merah: #b3261e;
+  }
 
-        <span class="section-label">HUBUNGI KAMI</span>
-        <h1>Kontak Organisasi</h1>
-        <p class="kontak-intro">
-            Punya pertanyaan, saran, atau ingin bersilaturahmi?
-            Kirimkan pesan melalui formulir berikut.
-        </p>
+  .kt-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 24px 80px;
+    box-sizing: border-box;
+  }
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="kontak-alert kontak-alert-{{ message.tags }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+  /* KEPALA HALAMAN */
+  .kt-label {
+    display: block;
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--kt-hijau);
+  }
+  .kt-wrap h1 {
+    margin: 0 0 14px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--kt-judul);
+  }
+  .kt-intro {
+    max-width: 720px;
+    margin: 0 0 36px;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--kt-teks);
+  }
 
-        <div class="kontak-grid">
+  /* PESAN SUKSES / ERROR */
+  .kt-alert {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    border-radius: 8px;
+    border: 1px solid var(--kt-garis);
+    background: var(--kt-hijau-muda);
+    color: var(--kt-hijau-tua);
+  }
+  .kt-alert-error {
+    background: #fdecea;
+    border-color: #f1b5b0;
+    color: var(--kt-merah);
+  }
 
-            <aside class="kontak-info">
-                <h3>Informasi Kontak</h3>
+  /* DUA KOLOM */
+  .kt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 28px;
+    align-items: start;
+  }
 
-                <div class="kontak-item">
-                    <span class="kontak-label">Alamat Sekretariat</span>
-                    <p>{{ site_profile.address|default:"Belum tersedia" }}</p>
-                </div>
+  /* KARTU INFORMASI */
+  .kt-info {
+    padding: 30px 30px 24px;
+    color: #fff;
+    background: var(--kt-hijau);
+    border-radius: 12px;
+  }
+  .kt-info h3 {
+    margin: 0 0 22px;
+    font-size: 24px;
+    color: #fff;
+  }
+  .kt-item {
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+  }
+  .kt-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .kt-item-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #bfe8cf;
+  }
+  .kt-item p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #fff;
+    word-break: break-word;
+  }
 
-                <div class="kontak-item">
-                    <span class="kontak-label">Telepon</span>
-                    <p>{{ site_profile.phone|default:"Belum tersedia" }}</p>
-                </div>
+  /* KARTU FORMULIR */
+  .kt-form-card {
+    padding: 30px 32px 34px;
+    background: #fff;
+    border: 1px solid var(--kt-garis);
+    border-radius: 12px;
+  }
+  .kt-form-card h3 {
+    margin: 0 0 22px;
+    font-size: 24px;
+    color: var(--kt-hijau);
+  }
+  .kt-group {
+    margin-bottom: 18px;
+  }
+  .kt-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--kt-judul);
+  }
+  .kt-group input,
+  .kt-group textarea,
+  .kt-group select {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--kt-judul);
+    background: #fff;
+    border: 1px solid #c5d6cb;
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  .kt-group textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
+  .kt-group input:focus,
+  .kt-group textarea:focus,
+  .kt-group select:focus {
+    border-color: var(--kt-hijau);
+    box-shadow: 0 0 0 3px rgba(13, 106, 58, .15);
+  }
+  .kt-group.kt-error input,
+  .kt-group.kt-error textarea,
+  .kt-group.kt-error select {
+    border-color: var(--kt-merah);
+  }
+  .kt-pesan-error {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--kt-merah);
+  }
+  .kt-tombol {
+    padding: 13px 32px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--kt-hijau);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .kt-tombol:hover {
+    background: var(--kt-hijau-tua);
+  }
 
-                <div class="kontak-item">
-                    <span class="kontak-label">Email</span>
-                    <p>{{ site_profile.email|default:"Belum tersedia" }}</p>
-                </div>
-            </aside>
+  /* RESPONSIF */
+  @media (max-width: 860px) {
+    .kt-wrap { padding-top: 40px; }
+    .kt-wrap h1 { font-size: 30px; }
+    .kt-grid { grid-template-columns: 1fr; }
+    .kt-form-card { padding: 24px 20px 28px; }
+  }
+</style>
 
-            <div class="kontak-form-card">
-                <h3>Kirim Pesan</h3>
+<section class="kt-wrap">
 
-                <form method="post" novalidate>
-                    {% csrf_token %}
+    <span class="kt-label">HUBUNGI KAMI</span>
+    <h1>Kontak Organisasi</h1>
+    <p class="kt-intro">
+        Punya pertanyaan, saran, atau ingin bersilaturahmi?
+        Kirimkan pesan melalui formulir berikut.
+    </p>
 
-                    {% for field in form %}
-                        <div class="form-group{% if field.errors %} has-error{% endif %}">
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                            {{ field }}
-                            {% for error in field.errors %}
-                                <span class="form-error">{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="kt-alert kt-alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
-                    <button type="submit" class="form-button">Kirim Pesan</button>
-                </form>
+    <div class="kt-grid">
+
+        <aside class="kt-info">
+            <h3>Informasi Kontak</h3>
+
+            <div class="kt-item">
+                <span class="kt-item-label">Alamat Sekretariat</span>
+                <p>{{ site_profile.address|default:"Belum tersedia" }}</p>
             </div>
 
+            <div class="kt-item">
+                <span class="kt-item-label">Telepon</span>
+                <p>{{ site_profile.phone|default:"Belum tersedia" }}</p>
+            </div>
+
+            <div class="kt-item">
+                <span class="kt-item-label">Email</span>
+                <p>{{ site_profile.email|default:"Belum tersedia" }}</p>
+            </div>
+        </aside>
+
+        <div class="kt-form-card">
+            <h3>Kirim Pesan</h3>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="kt-group{% if field.errors %} kt-error{% endif %}">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <span class="kt-pesan-error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="kt-tombol">Kirim Pesan</button>
+            </form>
         </div>
+
     </div>
+
 </section>
 
 {% endblock %}
