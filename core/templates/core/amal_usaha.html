@@ -1,76 +1,244 @@
 {% extends "core/base.html" %}
-
-{% block title %}
-Amal Usaha - PCM Muhammadiyah
-{% endblock %}
+{% block title %}Amal Usaha - PCM Muhammadiyah{% endblock %}
 
 {% block content %}
 
-<section class="section light">
+<style>
+  :root {
+    --au-hijau: #0d6a3a;
+    --au-hijau-tua: #0a4f2c;
+    --au-hijau-muda: #e8f3ec;
+    --au-teks: #444;
+    --au-judul: #222;
+    --au-garis: #d5e3da;
+  }
 
-    <div class="container">
+  .au-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 24px 80px;
+    box-sizing: border-box;
+  }
 
-        <span class="section-label">KONTRIBUSI ORGANISASI</span>
+  /* KEPALA HALAMAN */
+  .au-label {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--au-hijau);
+  }
+  .au-wrap h1 {
+    margin: 0 0 28px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: var(--au-judul);
+  }
 
-        <h1>Amal Usaha Muhammadiyah</h1>
+  /* PENGANTAR */
+  .au-intro {
+    max-width: 880px;
+    margin-bottom: 44px;
+  }
+  .au-intro p {
+    margin: 0 0 18px;
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--au-teks);
+  }
 
-        {% for group in groups %}
+  /* JUDUL DAFTAR */
+  .au-judul {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0 0 8px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--au-hijau);
+  }
+  .au-judul h2 {
+    margin: 0;
+    font-size: 32px;
+    color: var(--au-hijau);
+  }
+  .au-jumlah {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--au-teks);
+  }
+  .au-ket {
+    margin: 14px 0 28px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--au-teks);
+  }
 
-            <div class="amal-group">
+  /* KARTU AMAL USAHA */
+  .au-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .au-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--au-garis);
+    border-top: 4px solid var(--au-hijau);
+    border-radius: 10px;
+    padding: 24px 26px 26px;
+  }
+  .au-tag {
+    align-self: flex-start;
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--au-hijau-tua);
+    background: var(--au-hijau-muda);
+    border-radius: 999px;
+  }
+  .au-card h3 {
+    margin: 0 0 14px;
+    font-size: 21px;
+    line-height: 1.35;
+    color: var(--au-judul);
+  }
+  .au-alamat {
+    margin: 0 0 14px;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--au-teks);
+    background: var(--au-hijau-muda);
+    border-left: 3px solid var(--au-hijau);
+    border-radius: 4px;
+  }
+  .au-alamat b {
+    color: var(--au-hijau-tua);
+  }
+  .au-card p.au-desk {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--au-teks);
+  }
 
-                <h2>{{ group.label }}
-                    <span class="amal-count">{{ group.items|length }}</span>
-                </h2>
+  /* PENUTUP */
+  .au-penutup {
+    margin: 48px 0 0;
+    padding: 28px 32px;
+    font-size: 16px;
+    line-height: 1.95;
+    color: var(--au-teks);
+    background: #fff;
+    border-left: 5px solid var(--au-hijau);
+    border-radius: 10px;
+  }
 
-                <div class="news-grid">
+  /* RESPONSIF */
+  @media (max-width: 800px) {
+    .au-wrap { padding-top: 40px; }
+    .au-wrap h1 { font-size: 30px; }
+    .au-grid { grid-template-columns: 1fr; }
+    .au-judul h2 { font-size: 26px; }
+    .au-penutup { padding: 22px 22px; }
+  }
+</style>
 
-                    {% for item in group.items %}
+<section class="au-wrap">
 
-                        <article class="news-card">
+  <p class="au-label">KONTRIBUSI ORGANISASI</p>
+  <h1>Amal Usaha Muhammadiyah</h1>
 
-                            {% if item.photo %}
-                                <img src="{{ item.photo.url }}" alt="{{ item.name }}">
-                            {% endif %}
+  <div class="au-intro">
+    <p>
+      Amal Usaha Muhammadiyah (AUM) merupakan perwujudan nyata dakwah Persyarikatan Muhammadiyah dalam memberikan pelayanan kepada masyarakat di berbagai bidang kehidupan. AUM didirikan bukan semata-mata sebagai lembaga penyelenggara layanan, melainkan sebagai media dakwah amar makruf nahi mungkar yang berlandaskan nilai-nilai Islam, profesionalisme, serta semangat berkemajuan. Melalui Amal Usaha Muhammadiyah, Persyarikatan berupaya menghadirkan manfaat yang seluas-luasnya bagi umat, bangsa, dan negara.
+    </p>
+    <p>
+      Sebagai salah satu pilar utama gerakan Muhammadiyah, Amal Usaha Muhammadiyah memiliki peran strategis dalam menyelenggarakan pendidikan, pembinaan keagamaan, pelayanan sosial, pemberdayaan masyarakat, serta pengembangan sumber daya manusia. Seluruh AUM dikelola secara profesional dengan mengedepankan tata kelola yang baik, mutu pelayanan, inovasi, serta penguatan karakter Islami sehingga mampu menghasilkan lulusan dan layanan yang berkualitas, berdaya saing, serta memiliki kepedulian terhadap kemajuan masyarakat.
+    </p>
+    <p>
+      Pimpinan Cabang Muhammadiyah (PCM) Masaran terus berkomitmen mengembangkan Amal Usaha Muhammadiyah sebagai pusat pendidikan, dakwah, dan pembinaan umat. Keberadaan berbagai lembaga pendidikan yang tersebar di wilayah Masaran menjadi bukti nyata kontribusi Muhammadiyah dalam mencerdaskan kehidupan bangsa sekaligus membentuk generasi yang beriman, berilmu, berakhlak mulia, dan mampu menghadapi tantangan perkembangan zaman.
+    </p>
+  </div>
 
-                            <div class="news-content">
+  <div class="au-judul">
+    <h2>Pendidikan</h2>
+    <span class="au-jumlah">9 lembaga</span>
+  </div>
+  <p class="au-ket">Amal Usaha Muhammadiyah yang berada di bawah pembinaan Pimpinan Cabang Muhammadiyah Masaran adalah sebagai berikut.</p>
 
-                                <h3>{{ item.name }}</h3>
+  <div class="au-grid">
 
-                                {% if item.address %}
-                                    <p>Alamat: {{ item.address }}</p>
-                                {% endif %}
+    <article class="au-card">
+      <span class="au-tag">SMK</span>
+      <h3>SMK Muhammadiyah 10 Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Jl. Raya Sragen–Solo KM 10, RT 25/RW 10, Masaran, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Sekolah ini menyelenggarakan pendidikan kejuruan yang berorientasi pada penguasaan kompetensi, penguatan karakter Islami, serta kesiapan lulusan memasuki dunia kerja, dunia usaha, maupun melanjutkan pendidikan ke jenjang yang lebih tinggi.</p>
+    </article>
 
-                                {% if item.phone %}
-                                    <p>Telepon: {{ item.phone }}</p>
-                                {% endif %}
+    <article class="au-card">
+      <span class="au-tag">SMA</span>
+      <h3>SMA Muhammadiyah 3 Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Jl. Raya Sragen–Solo KM 10, RT 09/RW 02, Masaran Kulon, Desa Jati, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Sekolah ini berkomitmen memberikan pendidikan menengah yang unggul dengan memadukan penguasaan ilmu pengetahuan, pembinaan akhlak, serta pengembangan prestasi akademik dan nonakademik.</p>
+    </article>
 
-                                {% if item.description %}
-                                    <p>{{ item.description }}</p>
-                                {% endif %}
+    <article class="au-card">
+      <span class="au-tag">SMP</span>
+      <h3>SMP Muhammadiyah 2 Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Jl. Raya Sragen–Solo KM 10, RT 25/RW 10, Masaran, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Sekolah ini menjadi salah satu lembaga pendidikan yang membentuk peserta didik berkarakter Islami, berprestasi, kreatif, dan memiliki kemampuan akademik yang kompetitif.</p>
+    </article>
 
-                            </div>
+    <article class="au-card">
+      <span class="au-tag">MTs</span>
+      <h3>MTs Muhammadiyah 3 Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Kliwonan RT 13, Desa Kliwonan, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Madrasah ini mengintegrasikan pendidikan umum dan pendidikan agama Islam sehingga mampu mencetak generasi yang cerdas, religius, berakhlak mulia, dan berwawasan luas.</p>
+    </article>
 
-                        </article>
+    <article class="au-card">
+      <span class="au-tag">Pondok Pesantren</span>
+      <h3>Pondok Pesantren Tahfiz Al-Qur'an (PPTQ) Darul Hikmah Muhammadiyah Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Gondang RT 22/RW 07, Desa Jirapan, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Pesantren ini menjadi pusat pembinaan kader dan pendidikan Islam dengan penekanan pada tahfiz Al-Qur'an, pembentukan karakter, penguasaan ilmu keislaman, serta pengembangan keterampilan hidup bagi para santri.</p>
+    </article>
 
-                    {% endfor %}
+    <article class="au-card">
+      <span class="au-tag">SD</span>
+      <h3>SD Muhammadiyah Terpadu Masaran</h3>
+      <p class="au-alamat"><b>Alamat:</b> Masaran RT 27/RW 10, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Sekolah dasar ini menerapkan pembelajaran terpadu yang menggabungkan pendidikan umum, pendidikan agama, pembentukan karakter, serta pengembangan potensi peserta didik sejak usia dini.</p>
+    </article>
 
-                </div>
+    <article class="au-card">
+      <span class="au-tag">MI</span>
+      <h3>MI Muhammadiyah Sidodadi</h3>
+      <p class="au-alamat"><b>Alamat:</b> Desa Sidodadi, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Madrasah ini berperan memberikan pendidikan dasar yang berkualitas dengan menanamkan nilai-nilai keislaman, kedisiplinan, dan kecintaan terhadap ilmu pengetahuan.</p>
+    </article>
 
-            </div>
+    <article class="au-card">
+      <span class="au-tag">MI</span>
+      <h3>MI Muhammadiyah Kliwonan</h3>
+      <p class="au-alamat"><b>Alamat:</b> Dukuh Beku, Desa Kliwonan, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Madrasah ini berkomitmen membangun peserta didik yang beriman, cerdas, kreatif, serta memiliki kepedulian sosial melalui proses pembelajaran yang inovatif dan berorientasi pada pembentukan karakter.</p>
+    </article>
 
-        {% empty %}
+    <article class="au-card">
+      <span class="au-tag">MI</span>
+      <h3>MI Muhammadiyah Pilang</h3>
+      <p class="au-alamat"><b>Alamat:</b> Pilang RT 17/RW 04, Desa Pilang, Kecamatan Masaran, Kabupaten Sragen 57282.</p>
+      <p class="au-desk">Madrasah ini menjadi salah satu pusat pendidikan dasar Muhammadiyah yang mengintegrasikan pendidikan agama dan ilmu pengetahuan umum guna mencetak generasi muslim yang unggul, mandiri, dan berakhlak mulia.</p>
+    </article>
 
-            <div class="empty-card">
-                <h3>Data Amal Usaha Belum Tersedia</h3>
-                <p>
-                    Informasi Amal Usaha akan ditampilkan
-                    setelah data resmi tersedia.
-                </p>
-            </div>
+  </div>
 
-        {% endfor %}
-
-    </div>
+  <blockquote class="au-penutup">
+    Kesembilan Amal Usaha Muhammadiyah tersebut merupakan aset strategis Pimpinan Cabang Muhammadiyah Masaran dalam melaksanakan misi dakwah melalui jalur pendidikan dan pembinaan umat. Dengan dukungan seluruh unsur Persyarikatan, mulai dari pimpinan, majelis, lembaga, organisasi otonom, hingga masyarakat, Amal Usaha Muhammadiyah di Masaran terus berkembang menjadi pusat pendidikan Islam yang unggul, terpercaya, dan berkemajuan. Ke depan, PCM Masaran berkomitmen untuk terus meningkatkan kualitas layanan, memperkuat tata kelola kelembagaan, mengembangkan inovasi pendidikan, serta memperluas kontribusi nyata bagi kemajuan masyarakat, bangsa, dan negara.
+  </blockquote>
 
 </section>
 
