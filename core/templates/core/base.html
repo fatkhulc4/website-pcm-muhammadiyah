@@ -10,22 +10,19 @@
         {% block title %}Website PCM Muhammadiyah{% endblock %}
     </title>
 
-    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}?v=7">
 
     <style>
-        /* Mengatur ukuran gambar berita & agenda agar proporsional dan rata tengah */
-        .news-grid img,
-        .news-card img,
-        .event-card img,
-        .news-thumb {
-            display: block;
-            width: 100%;
-            max-width: 480px;       /* Ubah angka ini jika ingin lebih kecil (misal: 380px) atau lebih besar */
-            height: 280px;          /* Menjaga tinggi gambar tetap seragam */
-            object-fit: cover;      /* Agar gambar terpotong rapi tanpa gepeng/tertarik */
-            margin: 0 auto 16px auto; /* Membuat posisi gambar tepat di tengah dan memberi jarak bawah */
-            border-radius: 10px;    /* Membuat sudut gambar sedikit melengkung agar lebih modern */
+        /* Memaksa semua gambar konten (berita & agenda) di dalam <main> mengecil dan rata tengah */
+        main img {
+            display: block !important;
+            width: 100% !important;
+            max-width: 450px !important;       /* Ubah angka ini (misal 360px atau 400px) jika ingin lebih kecil */
+            height: auto !important;           /* Menjaga rasio foto asli agar tidak terpotong */
+            margin: 0 auto 18px auto !important; /* Membuat posisi gambar rata tengah */
+            border-radius: 10px !important;
         }
+
         /* CSS Langsung di Base untuk Navbar dan Logo */
         .navbar {
             background: #0a6b38;
@@ -81,7 +78,7 @@
 
 <body>
 
-    <!-- NAVBAR UTAMA (LANGSUNG DI SINI TANPA FILE PARTIAL) -->
+    <!-- NAVBAR UTAMA -->
     <header class="navbar">
         <div class="container nav-content">
             
