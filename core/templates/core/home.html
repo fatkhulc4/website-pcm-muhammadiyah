@@ -163,3 +163,167 @@ Beranda - PCM Muhammadiyah
             <span class="bp-label">TENTANG ORGANISASI</span>
             <h2>Profil PCM Muhammadiyah</h2>
             <h3>Pimpinan Cabang Muhammadiyah Masaran</h3>
+
+            <p>
+                Pimpinan Cabang Muhammadiyah (PCM) Masaran merupakan salah satu struktur organisasi Persyarikatan Muhammadiyah pada tingkat kecamatan yang berada di bawah koordinasi Pimpinan Daerah Muhammadiyah (PDM) Kabupaten Sragen dan Pimpinan Wilayah Muhammadiyah (PWM) Jawa Tengah. Sebagai organisasi dakwah Islam yang berlandaskan Al-Qur'an dan As-Sunnah, PCM Masaran menjadi penggerak utama berbagai aktivitas dakwah, pendidikan, sosial, kesehatan, ekonomi, serta pemberdayaan masyarakat di wilayah Kecamatan Masaran.
+            </p>
+            <p>
+                PCM Masaran resmi berdiri pada tahun 1932 dan menjadi tonggak penting perkembangan Muhammadiyah di wilayah barat Kabupaten Sragen.
+            </p>
+
+            <a href="{% url 'core:profil' %}" class="bp-tombol">Baca Profil Lengkap</a>
+        </div>
+
+        <div class="bp-kanan">
+            <div class="bp-visi">
+                <h4>Visi</h4>
+                <p>Menegakkan dan menjunjung tinggi Agama Islam sehingga terwujud masyarakat Islam yang sebenar-benarnya.</p>
+            </div>
+            <div class="bp-misi">
+                <h4>Misi</h4>
+                <ol>
+                    <li>Meningkatkan kualitas iman, ibadah, dan akhlak warga cabang.</li>
+                    <li>Mengoptimalkan peran Pimpinan Ranting (PRM) di tingkat kelurahan/desa sebagai garda terdepan.</li>
+                    <li>Mengembangkan Amal Usaha Muhammadiyah (AUM) seperti sekolah, klinik, atau panti asuhan agar bermanfaat luas.</li>
+                    <li>Memperkuat dakwah amar ma'ruf nahi mungkar dan pembaharuan (tajdid).</li>
+                    <li>Menjalin kerja sama yang baik dengan masyarakat dan pemerintah setempat.</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section light" id="berita">
+
+    <div class="container">
+
+        <span class="section-label">
+            INFORMASI TERBARU
+        </span>
+
+        <h2>Berita Muhammadiyah</h2>
+
+        <div class="news-grid">
+
+            {% for news in news_list %}
+
+                <article class="news-card">
+
+                    {% if news.image %}
+                        <img src="{{ news.image.url }}"
+                             alt="{{ news.title }}">
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ news.title }}</h3>
+
+                        <p>
+                            {{ news.content|truncatewords:20 }}
+                        </p>
+
+                        <a href="{% url 'core:detail_berita' news.slug %}">
+                            Baca Selengkapnya
+                        </a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+
+                    <h3>Belum Ada Berita</h3>
+
+                    <p>
+                        Berita organisasi akan ditampilkan
+                        setelah tersedia berita yang dipublikasikan.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <p>
+            <a href="{% url 'core:berita' %}" class="button">
+                Lihat Semua Berita
+            </a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="kegiatan">
+
+    <div class="container">
+
+        <span class="section-label">
+            AGENDA ORGANISASI
+        </span>
+
+        <h2>Kegiatan</h2>
+                {% if event_is_past and event_list %}
+            <p class="description">Kegiatan terbaru yang telah terlaksana.</p>
+        {% endif %}
+
+        <div class="news-grid">
+
+            {% for event in event_list %}
+
+                <article class="news-card">
+
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}"
+                             alt="{{ event.title }}">
+                    {% endif %}
+
+                    <div class="news-content">
+
+                        <h3>{{ event.title }}</h3>
+
+                        <p>
+                            {{ event.description|truncatewords:20 }}
+                        </p>
+
+                        <p>
+                            Waktu: {{ event.start_date|date:"d M Y H:i" }}
+                        </p>
+
+                        {% if event.location %}
+                            <p>Lokasi: {{ event.location }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <div class="empty-card">
+
+                    <h3>Belum Ada Kegiatan</h3>
+
+                    <p>
+                        Informasi kegiatan akan diperbarui
+                        setelah data tersedia.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
