@@ -137,3 +137,20 @@ TO-DO
 ## Slide Presentasi
 
 File PDF ada di [`docs/slides/`](docs/slides/).
+
+## Struktur Repository
+nama-repository/
+├── config/                 # Folder konfigurasi utama Django (settings.py, urls.py, wsgi.py, asgi.py)
+├── core/                   # Folder aplikasi core (berisi template dasar seperti base.html, views, dll)
+├── src/
+│   └── website_pcm_muhammadiyah/  # Folder aplikasi utama (views, models, templates, static untuk website PCM)
+├── .dockerignore           # Daftar file yang diabaikan oleh Docker
+├── .env.example            # Contoh file environment variable
+├── .gitignore              # Daftar file yang diabaikan oleh Git
+├── .python-version         # Versi Python yang digunakan (diatur via uv/pyenv)
+├── Dockerfile              # Konfigurasi container Docker (terhubung ke Supabase)[cite: 1]
+├── README.md               # Dokumentasi repository
+├── compose.yaml            # Konfigurasi Docker Compose untuk orkestrasi container
+├── manage.py               # Script CLI utama Django
+├── pyproject.toml          # File dependensi dan konfigurasi project (menggunakan manajemen package uv)
+└── uv.lock                 # Lock file untuk dependensi uv
